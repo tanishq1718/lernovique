@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center & Academic FAQ | Lernovique - University Online Learning Platform</title>
+  <meta name="description" content="Frequently asked questions on course enrollment, assignment submissions, live classroom attendance, and grading policies.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .faq-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 0.85rem;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 1.25rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background var(--transition-fast);
+    }
+    .faq-question:hover {
+      background: var(--bg-subtle);
+    }
+    .faq-answer {
+      padding: 0 1.25rem 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: none;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1rem;
+    }
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+    }
+    .faq-icon {
+      transition: transform var(--transition-fast);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand-badge">
+          <img src="../assets/logo.svg" alt="Lernovique" class="brand-logo-img">
+          <span>Lernovique</span>
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-section-title">Academic Main</li>
+        <li><a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+        <li><a href="courses.html" class="sidebar-link"><i class="fa-solid fa-graduation-cap"></i> Courses Catalog</a></li>
+        <li><a href="live.html" class="sidebar-link"><i class="fa-solid fa-video"></i> Live Lectures</a></li>
+        <li><a href="assignments.html" class="sidebar-link"><i class="fa-solid fa-list-check"></i> Assignments</a></li>
+        <li><a href="grades.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Grades & GPA</a></li>
+
+        <li class="sidebar-section-title">Help</li>
+        <li><a href="help.html" class="sidebar-link active"><i class="fa-solid fa-circle-question"></i> Help & FAQ</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="window.location.href='profile.html'">
+          <div class="user-avatar auth-user-avatar">US</div>
+          <div class="user-info-text">
+            <div class="user-name auth-user-name">User Account</div>
+            <div class="user-role-label auth-user-role">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button class="mobile-toggle-btn" aria-label="Open Sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="breadcrumb-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Help Center</span>
+          </div>
+        </div>
+
+        <div class="navbar-right">
+          <button class="btn btn-icon-only btn-subtle theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Help Center & Academic FAQ</h1>
+            <p class="page-subtitle">Find immediate answers to questions on submissions, attendance records, and grading policies.</p>
+          </div>
+          <a href="messages.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-headset"></i> Contact Academic Help Desk
+          </a>
+        </div>
+
+        <div style="max-width: 860px;">
+          <div class="faq-item open">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>How do I submit assignments and what file formats are accepted?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+              Navigate to the <strong>Assignments</strong> tab from the sidebar. Select your pending coursework item and click "Submit Deliverable". You can drag and drop your file into the upload zone or choose a file from your hard drive. Accepted formats include PDF documents, compressed ZIP folders, SQL schemas, and Jupyter Notebooks (.ipynb). Once submitted, a confirmation receipt will be generated and faculty will be alerted.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>How does attendance tracking work for Live Classrooms?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+              When you click "Join Live Classroom" during a scheduled lecture, Lernovique registers your attendance token with the university registrar server. Attending at least 75% of the live session automatically satisfies the statutory academic attendance threshold for mid-term eligibility.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>How is Semester GPA (SGPA) and Cumulative GPA (CGPA) calculated?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+              Lernovique implements the standard UGC 10-point scale. SGPA is calculated by multiplying credit weighting of each course with grade point earned, divided by total registered credits. CGPA represents the cumulative weighted average across all completed semesters.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>Can I switch between Student and Faculty viewpoints for demonstration?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+              Yes! For evaluation of this interactive prototype, you can switch roles anytime using the "Switch to Faculty" link in the sidebar or by logging in with either demo account: <code>student@edu.com / 1234</code> or <code>faculty@edu.com / 1234</code>.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>How do I switch between Student and Faculty views?</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+              You can easily test both roles! Use the "Switch Role" link located at the bottom of the left sidebar, or log out and use the 1-click demo buttons on the login page to sign in as either a student (<code style="background: var(--bg-subtle); padding: 0.2rem 0.4rem; border-radius: 4px;">student@edu.com</code>) or faculty (<code style="background: var(--bg-subtle); padding: 0.2rem 0.4rem; border-radius: 4px;">faculty@edu.com</code>).
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    function toggleFaq(el) {
+      const parent = el.parentElement;
+      parent.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>

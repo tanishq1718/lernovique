@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lernovique - University Online Learning Platform | Learn. Evolve. Achieve.</title>
+  <meta name="description"
+    content="Lernovique is a state-of-the-art university online learning platform empowering students and faculty with modern course delivery, interactive assignments, live classrooms, and real-time grades.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Landing page custom hero & section styling */
+    .hero-section {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(6, 182, 212, 0.08) 100%);
+      padding: 5rem 1.5rem 4rem;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-glow-1 {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      bottom: -150px;
+      left: -100px;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-lead {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-card-preview {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      font-family: var(--font-heading);
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .section-spacing {
+      padding: 4.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all var(--transition-fast);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .feature-icon-wrapper {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .course-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .landing-footer {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-color);
+      padding: 4rem 1.5rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 2.4rem;
+      }
+
+      .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-navbar">
+    <div class="navbar-left">
+      <a href="index.html" class="brand-badge">
+        <img src="assets/logo.svg" alt="Lernovique Logo" class="brand-logo-img">
+        <div>
+          <span>Lernovique</span>
+          <span class="brand-tagline-text">Learn. Evolve. Achieve.</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="navbar-center" style="display: flex; gap: 1.5rem; align-items: center;">
+      <a href="#features" style="font-weight: 500; color: var(--text-muted);">Features</a>
+      <a href="#how-it-works" style="font-weight: 500; color: var(--text-muted);">How It Works</a>
+      <a href="#courses" style="font-weight: 500; color: var(--text-muted);">Popular Courses</a>
+      <a href="pages/courses.html" style="font-weight: 500; color: var(--text-muted);">Catalog</a>
+    </nav>
+
+    <div class="navbar-right">
+      <button class="btn btn-icon-only btn-subtle theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+      <div class="guest-only" style="display: flex; gap: 0.75rem;">
+        <a href="pages/login.html" class="btn btn-outline btn-sm">Log In</a>
+        <a href="pages/login.html?tab=register" class="btn btn-primary btn-sm">Get Started</a>
+      </div>
+
+      <div class="auth-only" style="display: none; align-items: center; gap: 0.75rem;">
+        <a href="pages/dashboard.html" class="btn btn-primary btn-sm role-student-only">Student Portal</a>
+        <a href="pages/faculty-dashboard.html" class="btn btn-primary btn-sm role-faculty-only">Faculty Portal</a>
+        <button class="btn btn-outline btn-sm" onclick="handleLogout()">Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="container hero-grid">
+      <div>
+        <div class="badge badge-primary" style="margin-bottom: 1.25rem; font-size: 0.85rem; padding: 0.4rem 0.9rem;">
+          <i class="fa-solid fa-graduation-cap"></i> Next-Generation University Portal
+        </div>
+        <h1 class="hero-title">
+          The Intelligent Academic Platform for <span class="gradient-text">Higher Education</span>
+        </h1>
+        <p class="hero-lead">
+          Lernovique empowers students and faculty with streamlined course learning, interactive video lectures, cloud
+          assignment submissions, real-time live classes, and instant grade audits.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="pages/dashboard.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-gauge-high"></i> Explore Student Dashboard
+          </a>
+          <a href="pages/faculty-dashboard.html" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-chalkboard-user"></i> Faculty Dashboard
+          </a>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Demo Credentials Included
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> Zero Build Setup
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-circle-check" style="color: var(--success);"></i> WCAG AA Accessible
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Card Interactive Teaser -->
+      <div class="hero-card-preview">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div class="user-avatar" style="width: 44px; height: 44px; font-size: 1rem;">LQ</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Lernovique Student</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">B.Tech CS & Design • Sem 5</div>
+            </div>
+          </div>
+          <span class="badge badge-success"><i class="fa-solid fa-circle-dot"></i> Active Session</span>
+        </div>
+
+        <div class="card" style="margin-bottom: 1rem; border-left: 4px solid var(--primary); padding: 1.1rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.35rem;">
+            <span style="font-weight: 600; color: var(--primary);">DES-201 UI/UX Design Systems</span>
+            <span style="font-weight: 700;">68%</span>
+          </div>
+          <div class="progress-bar-container" style="height: 6px;">
+            <div class="progress-bar-fill" style="width: 68%;"></div>
+          </div>
+          <div
+            style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem; display: flex; justify-content: space-between;">
+            <span>Next: Usability Testing & SUS Score</span>
+            <span>8/12 Lectures</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+          <div style="background: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Current GPA</div>
+            <div style="font-size: 1.35rem; font-weight: 800; color: var(--primary);">8.84 / 10</div>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-md);">
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Upcoming Live Class</div>
+            <div style="font-size: 0.9rem; font-weight: 700; color: var(--secondary);">Today 4:00 PM</div>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="pages/dashboard.html" class="btn btn-subtle btn-sm" style="width: 100%;">
+            Launch Prototype Dashboard <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Bar -->
+  <section class="container">
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">28,000+</div>
+        <div class="stat-label">Active University Students</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">450+</div>
+        <div class="stat-label">Accredited Faculty & Mentors</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">99.4%</div>
+        <div class="stat-label">Assignment On-Time Turnaround</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4.9 / 5</div>
+        <div class="stat-label">Student Usability Rating (SUS)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="container section-spacing">
+    <div class="section-header">
+      <span class="badge badge-primary" style="margin-bottom: 0.75rem;">Engineered for Academic Excellence</span>
+      <h2>A Unified Learning Experience</h2>
+      <p style="color: var(--text-muted);">Designed after extensive contextual inquiry with university students and
+        professors to eliminate portal friction and cognitive overload.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-wrapper" style="background: var(--primary-light); color: var(--primary);">
+          <i class="fa-solid fa-book-bookmark"></i>
+        </div>
+        <h3 style="margin-bottom: 0.6rem;">Modular Course Delivery</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Structured multi-tab course environments uniting syllabi, lecture video players, study attachments, and live
+          class links in one clean workspace.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper" style="background: var(--secondary-light); color: var(--secondary);">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+        <h3 style="margin-bottom: 0.6rem;">Seamless Assignments</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Drag-and-drop cloud assignment submissions with dynamic countdown timers, rubric previews, and instant
+          submission verification receipts.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper" style="background: var(--accent-light); color: var(--accent);">
+          <i class="fa-solid fa-video"></i>
+        </div>
+        <h3 style="margin-bottom: 0.6rem;">Interactive Live Classrooms</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Direct 1-click access to scheduled professor lectures, interactive real-time doubt clearing, and automated
+          on-demand recordings.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper" style="background: var(--success-light); color: var(--success);">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3 style="margin-bottom: 0.6rem;">Transparent Grade Analytics</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Subject-wise performance breakdowns, weighted SGPA/CGPA calculations, and visual semester grade charts
+          rendered dynamically.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper" style="background: rgba(147, 51, 234, 0.12); color: #9333EA;">
+          <i class="fa-solid fa-comments"></i>
+        </div>
+        <h3 style="margin-bottom: 0.6rem;">Direct Faculty Chat</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Bridge communication gaps between students and academic supervisors with threaded messaging and instant
+          broadcast announcements.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-wrapper" style="background: rgba(239, 68, 68, 0.12); color: var(--danger);">
+          <i class="fa-solid fa-universal-access"></i>
+        </div>
+        <h3 style="margin-bottom: 0.6rem;">Universal Accessibility</h3>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">
+          Full dark mode support, WCAG 2.1 AA compliant contrast ratios, keyboard-friendly navigation, and mobile
+          responsive collapsible drawers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works"
+    style="background-color: var(--bg-subtle); padding: 4.5rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-secondary" style="margin-bottom: 0.75rem;">Fast & Intuitive</span>
+        <h2>How Lernovique Works</h2>
+        <p style="color: var(--text-muted);">Three easy steps from semester orientation to academic mastery.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div class="card" style="text-align: center; padding: 2.5rem 1.5rem;">
+          <div
+            style="width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-weight: 800; font-size: 1.2rem;">
+            1</div>
+          <h3 style="margin-bottom: 0.75rem;">Enroll in Curriculum</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">Browse the university catalog, filter by
+            engineering/design discipline, and join accredited lecture tracks in 1 click.</p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 2.5rem 1.5rem;">
+          <div
+            style="width: 48px; height: 48px; border-radius: 50%; background: var(--secondary); color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-weight: 800; font-size: 1.2rem;">
+            2</div>
+          <h3 style="margin-bottom: 0.75rem;">Attend & Collaborate</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">Watch recorded high-definition lectures, participate
+            in live classes, and collaborate with peers in discussion boards.</p>
+        </div>
+
+        <div class="card" style="text-align: center; padding: 2.5rem 1.5rem;">
+          <div
+            style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-weight: 800; font-size: 1.2rem;">
+            3</div>
+          <h3 style="margin-bottom: 0.75rem;">Submit & Excel</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">Upload assignments directly from your workstation,
+            receive personalized faculty feedback, and track your cumulative GPA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Courses Section -->
+  <section id="courses" class="container section-spacing">
+    <div
+      style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <span class="badge badge-accent" style="margin-bottom: 0.5rem;">Curated Academic Modules</span>
+        <h2>Popular Semester Courses</h2>
+        <p style="color: var(--text-muted);">Explore featured courses led by distinguished faculty.</p>
+      </div>
+      <a href="pages/courses.html" class="btn btn-outline">
+        View Complete Catalog <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="course-card-grid" id="featured-courses-container">
+      <!-- Injected via JavaScript from mock-data.js -->
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section
+    style="background-color: var(--bg-subtle); padding: 4.5rem 0; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header">
+        <span class="badge badge-success" style="margin-bottom: 0.75rem;">Student & Faculty Voices</span>
+        <h2>Loved by 28,000+ Learners</h2>
+        <p style="color: var(--text-muted);">Real feedback collected during our university user research sessions.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div class="card">
+          <div style="color: #F59E0B; margin-bottom: 1rem;">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-style: italic; color: var(--text-main); margin-bottom: 1.25rem;">
+            "Prior to Lernovique, finding lecture notes and deadline dates across 6 subjects was overwhelming. Now,
+            every submission and lecture video is reachable within 2 clicks."
+          </p>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div class="user-avatar" style="width: 40px; height: 40px;">KN</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Kavya Nair</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">3rd Year CS Student</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="color: #F59E0B; margin-bottom: 1rem;">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-style: italic; color: var(--text-main); margin-bottom: 1.25rem;">
+            "The Faculty Dashboard reduced my grading overhead significantly. Entering rubric grades and directly
+            clarifying doubts via chat saves hours every week."
+          </p>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div class="user-avatar"
+              style="width: 40px; height: 40px; background: linear-gradient(135deg, #059669, #10B981);">PK</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Dr. Priya Kulkarni</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Professor & Head of HCI</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="color: #F59E0B; margin-bottom: 1rem;">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+              class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p style="font-style: italic; color: var(--text-main); margin-bottom: 1.25rem;">
+            "The integrated design documentation and clear accessibility features make Lernovique stand out as an
+            exemplary case study in academic software engineering."
+          </p>
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <div class="user-avatar"
+              style="width: 40px; height: 40px; background: linear-gradient(135deg, #F59E0B, #EA580C);">RR</div>
+            <div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Prof. Rajesh Ramanathan</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Associate Professor, Algorithms</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="container" style="padding: 4.5rem 1.5rem;">
+    <div
+      style="background: linear-gradient(135deg, var(--primary) 0%, #312E81 100%); border-radius: var(--radius-xl); padding: 3.5rem 2rem; color: #FFFFFF; text-align: center; position: relative; overflow: hidden; box-shadow: var(--shadow-xl);">
+      <h2 style="color: #FFFFFF; font-size: 2.4rem; margin-bottom: 1rem;">Ready to Experience Lernovique?</h2>
+      <p style="color: #E0E7FF; max-width: 620px; margin: 0 auto 2rem; font-size: 1.1rem;">
+        Launch the interactive student dashboard or explore the faculty management portal.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="pages/dashboard.html" class="btn btn-secondary btn-lg">Launch Student Dashboard</a>
+        <a href="pages/faculty-dashboard.html" class="btn btn-outline btn-lg"
+          style="color: #FFFFFF; border-color: rgba(255,255,255,0.4);">Launch Faculty Portal</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="landing-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-badge" style="margin-bottom: 1rem;">
+            <img src="assets/logo.svg" alt="Lernovique Logo" class="brand-logo-img">
+            <div>
+              <span>Lernovique</span>
+              <span class="brand-tagline-text">Learn. Evolve. Achieve.</span>
+            </div>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; max-width: 340px;">
+            A premier university online learning platform crafted with human-centered design principles for students,
+            mentors, and academic administrators.
+          </p>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 1rem;">Platform</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
+            <li><a href="pages/dashboard.html" style="color: var(--text-muted);">Student Dashboard</a></li>
+            <li><a href="pages/faculty-dashboard.html" style="color: var(--text-muted);">Faculty Dashboard</a></li>
+            <li><a href="pages/courses.html" style="color: var(--text-muted);">Courses Catalog</a></li>
+            <li><a href="pages/live.html" style="color: var(--text-muted);">Live Classrooms</a></li>
+            <li><a href="pages/assignments.html" style="color: var(--text-muted);">Assignments</a></li>
+            <li><a href="pages/grades.html" style="color: var(--text-muted);">Grades & GPA</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 1rem;">Quick Navigation</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
+            <li><a href="pages/login.html" style="color: var(--text-muted);">Sign In</a></li>
+            <li><a href="pages/login.html?tab=register" style="color: var(--text-muted);">Create Account</a></li>
+            <li><a href="pages/profile.html" style="color: var(--text-muted);">My Academic Profile</a></li>
+            <li><a href="pages/messages.html" style="color: var(--text-muted);">Academic Inbox</a></li>
+            <li><a href="pages/help.html" style="color: var(--text-muted);">Help & Support</a></li>
+            <li><a href="pages/404.html" style="color: var(--text-muted);">System Diagnostics</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 1rem;">Demo Quick Access</h4>
+          <div
+            style="background: var(--bg-subtle); padding: 1rem; border-radius: var(--radius-md); font-size: 0.82rem; margin-bottom: 1rem;">
+            <div style="font-weight: 700; margin-bottom: 0.35rem; color: var(--primary);">Student Demo:</div>
+            <div>student@edu.com / 1234</div>
+            <div style="font-weight: 700; margin-top: 0.5rem; margin-bottom: 0.35rem; color: var(--secondary);">Faculty
+              Demo:</div>
+            <div>faculty@edu.com / 1234</div>
+          </div>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="pages/help.html" class="badge badge-subtle"><i class="fa-solid fa-circle-question"></i> Help /
+              FAQ</a>
+            <a href="pages/404.html" class="badge badge-subtle"><i class="fa-solid fa-bug"></i> 404 Page</a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        style="border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+        <div>&copy; 2026 Lernovique. University Learning Platform. All rights reserved.</div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="pages/help.html" style="color: var(--text-muted);">Privacy Policy</a>
+          <a href="pages/help.html" style="color: var(--text-muted);">Academic Integrity</a>
+          <a href="pages/help.html" style="color: var(--text-muted);">Help Center</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Populate featured courses on landing page
+    document.addEventListener("DOMContentLoaded", () => {
+      const data = getLernoviqueData();
+      const container = document.getElementById("featured-courses-container");
+      if (container && data.courses) {
+        const topCourses = data.courses.slice(0, 3);
+        container.innerHTML = topCourses.map(course => `
+          <div class="card card-interactive" style="display: flex; flex-direction: column;">
+            <div style="height: 140px; border-radius: var(--radius-md); background: ${course.thumbnailGradient}; margin-bottom: 1.25rem; display: flex; align-items: flex-end; padding: 1rem; color: #FFFFFF;">
+              <div>
+                <span class="badge" style="background: rgba(255,255,255,0.25); color: #FFFFFF; backdrop-filter: blur(4px); margin-bottom: 0.4rem;">${course.code}</span>
+                <div style="font-weight: 700; font-size: 1.05rem;">${course.category}</div>
+              </div>
+            </div>
+            <div style="flex: 1;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <span class="badge badge-primary">${course.level}</span>
+                <span style="font-size: 0.85rem; font-weight: 700; color: #F59E0B;"><i class="fa-solid fa-star"></i> ${course.rating}</span>
+              </div>
+              <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; line-height: 1.35;">${course.title}</h3>
+              <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                ${course.description}
+              </p>
+            </div>
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.82rem; color: var(--text-muted);"><i class="fa-solid fa-user-tie"></i> ${course.instructor}</span>
+              <a href="pages/course-detail.html?id=${course.id}" class="btn btn-primary btn-sm">Explore Course</a>
+            </div>
+          </div>
+        `).join("");
+      }
+    });
+  </script>
+</body>
+
+</html>

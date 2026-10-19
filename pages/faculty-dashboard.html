@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Dashboard | Lernovique - University Online Learning Platform</title>
+  <meta name="description" content="Instructor control center for uploading syllabus study materials, creating assignments, grading submissions, and broadcasting notices.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand-badge">
+          <img src="../assets/logo.svg" alt="Lernovique" class="brand-logo-img">
+          <span>Lernovique</span>
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-section-title">Faculty Portal</li>
+        <li><a href="faculty-dashboard.html" class="sidebar-link active"><i class="fa-solid fa-gauge-high"></i> Faculty Overview</a></li>
+        <li><a href="courses.html" class="sidebar-link"><i class="fa-solid fa-graduation-cap"></i> Courses Taught</a></li>
+        <li><a href="live.html" class="sidebar-link"><i class="fa-solid fa-video"></i> Host Live Class</a></li>
+        <li><a href="messages.html" class="sidebar-link"><i class="fa-solid fa-comments"></i> Student Messages <span class="badge badge-accent" style="margin-left:auto;">2</span></a></li>
+
+        <li class="sidebar-section-title">Help</li>
+        <li><a href="dashboard.html" class="sidebar-link" onclick="switchToStudentRole()"><i class="fa-solid fa-user-graduate"></i> Switch to Student View</a></li>
+        <li><a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> Help & FAQ</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="window.location.href='profile.html'">
+          <div class="user-avatar auth-user-avatar" style="background: linear-gradient(135deg, #059669, #10B981);">US</div>
+          <div class="user-info-text">
+            <div class="user-name auth-user-name">Faculty Account</div>
+            <div class="user-role-label auth-user-role">Faculty</div>
+          </div>
+          <button class="btn btn-icon-only btn-subtle" onclick="event.stopPropagation(); handleLogout();" title="Sign Out" aria-label="Sign Out" style="width:30px; height:30px;">
+            <i class="fa-solid fa-arrow-right-from-bracket" style="font-size:0.85rem;"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button class="mobile-toggle-btn" aria-label="Open Sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="breadcrumb-nav">
+            <a href="../index.html">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Faculty Management Portal</span>
+          </div>
+        </div>
+
+        <div class="navbar-right">
+          <button class="btn btn-icon-only btn-subtle theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <!-- Faculty Welcome Banner -->
+        <div style="background: linear-gradient(135deg, #065F46 0%, #064E3B 100%); color: #FFF; border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-lg);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="badge" style="background: rgba(255,255,255,0.2); color: #FFF; margin-bottom: 0.5rem;" id="facultyDeptBadge">
+                Department of Human-Centered Design & Computing
+              </span>
+              <h1 style="color: #FFF; font-size: 1.85rem; margin-bottom: 0.35rem;" id="facultyWelcomeTitle">
+                Faculty Workspace: <span class="auth-user-name">Faculty Member</span>
+              </h1>
+              <p style="color: #A7F3D0; font-size: 0.95rem;">
+                Manage coursework submissions, publish new assignments, upload study materials, and stream lecture broadcasts.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn btn-secondary btn-sm" onclick="openModal('createAssignmentModal')">
+                <i class="fa-solid fa-plus"></i> Create Assignment
+              </button>
+              <button class="btn btn-outline btn-sm" style="color: #FFF; border-color: rgba(255,255,255,0.4);" onclick="openModal('uploadMaterialModal')">
+                <i class="fa-solid fa-file-arrow-up"></i> Upload Material
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric widgets for faculty -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
+          <div class="card" style="border-left: 4px solid #10B981;">
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Active Courses Taught</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #10B981;">2 Courses</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">DES-201 & DES-301</div>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--primary);">
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Total Enrolled Students</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">324 Students</div>
+            <div style="font-size: 0.78rem; color: var(--success); font-weight: 600;"><i class="fa-solid fa-check"></i> 94% Avg Attendance</div>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--accent);">
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Pending Submissions to Grade</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--accent);" id="pendingGradingCount">2 Submissions</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">Requires Rubric Score</div>
+          </div>
+
+          <div class="card" style="border-left: 4px solid var(--secondary);">
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Scheduled Live Broadcast</div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--secondary); margin-top: 0.35rem;">Today, 4:00 PM</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">DES-201 Heuristics Audit</div>
+          </div>
+        </div>
+
+        <!-- Student Submissions Table & Grading Action -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <div class="card-header">
+            <div class="card-title"><i class="fa-solid fa-inbox" style="color: var(--primary);"></i> Student Submissions Needing Evaluation</div>
+            <span class="badge badge-accent">Live Queue</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Student Name & Roll</th>
+                  <th>Course Code</th>
+                  <th>Assignment Deliverable</th>
+                  <th>Submission Timestamp</th>
+                  <th>Attached File</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="facultySubmissionsTable">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Quick Access: Courses Taught Overview -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><i class="fa-solid fa-chalkboard-user" style="color: var(--primary);"></i> Courses Taught in Autumn 2026</div>
+            <a href="courses.html" class="btn btn-outline btn-sm">Full Catalog</a>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+            <div style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; background: var(--bg-subtle);">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span class="badge badge-primary">DES-201</span>
+                <span style="font-size: 0.8rem; font-weight: 700; color: #F59E0B;"><i class="fa-solid fa-star"></i> 4.9</span>
+              </div>
+              <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem;">UI/UX Design Systems & Usability</h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">184 Enrolled • 12 Lectures • 4 Assignments</p>
+              <div style="display: flex; gap: 0.5rem;">
+                <a href="course-detail.html?id=des-201" class="btn btn-primary btn-sm" style="flex:1;">Classroom</a>
+                <a href="live.html?join=live-1" class="btn btn-secondary btn-sm"><i class="fa-solid fa-video"></i> Broadcast</a>
+              </div>
+            </div>
+
+            <div style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; background: var(--bg-subtle);">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                <span class="badge badge-secondary">DES-301</span>
+                <span style="font-size: 0.8rem; font-weight: 700; color: #F59E0B;"><i class="fa-solid fa-star"></i> 4.9</span>
+              </div>
+              <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem;">Interaction Design & Prototyping</h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">140 Enrolled • 10 Lectures • 3 Assignments</p>
+              <div style="display: flex; gap: 0.5rem;">
+                <a href="course-detail.html?id=des-301" class="btn btn-primary btn-sm" style="flex:1;">Classroom</a>
+                <button class="btn btn-outline btn-sm" onclick="showToast('Class scheduled for Thursday', 'info')"><i class="fa-solid fa-calendar"></i> Schedule</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: Grade Student Submission -->
+  <div class="modal-overlay" id="gradeSubmissionModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="gradeModalTitle">Evaluate Submission</h3>
+        <button style="background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closeModal('gradeSubmissionModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;" id="gradeModalStudentInfo">
+          Student: Kavya Nair (CS2023-085)
+        </div>
+        <div class="form-group">
+          <label class="form-label">Marks Awarded (out of 100)</label>
+          <input type="number" id="inputGradeScore" class="form-control" min="0" max="100" value="92" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Faculty Feedback & Rubric Remarks</label>
+          <textarea id="inputGradeFeedback" class="form-control" rows="3" placeholder="Provide qualitative critique on methodology, accessibility, or code quality...">Exceptional prototype fidelity and rigorous heuristic evaluation compliance.</textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" onclick="closeModal('gradeSubmissionModal')">Cancel</button>
+        <button class="btn btn-primary btn-sm" onclick="confirmEnterGrade()">
+          <i class="fa-solid fa-check"></i> Commit Grade to Ledger
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Create Assignment -->
+  <div class="modal-overlay" id="createAssignmentModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Create New Course Assignment</h3>
+        <button style="background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closeModal('createAssignmentModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleCreateAssignment(event)">
+          <div class="form-group">
+            <label class="form-label">Course</label>
+            <select id="newAsgCourse" class="form-control" required>
+              <option value="des-201">DES-201: UI/UX Design Systems</option>
+              <option value="des-301">DES-301: Interaction Design</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Assignment Title</label>
+            <input type="text" id="newAsgTitle" class="form-control" placeholder="e.g. Assignment 4: Usability Testing Audit" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description & Submission Guidelines</label>
+            <textarea id="newAsgDesc" class="form-control" rows="3" placeholder="Detail rubric criteria, file format expectations, and testing benchmarks..." required></textarea>
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label">Submission Deadline</label>
+              <input type="date" id="newAsgDue" class="form-control" required value="2026-11-05">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Maximum Marks</label>
+              <input type="number" id="newAsgMarks" class="form-control" value="100" required>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1rem;">
+            <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('createAssignmentModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Publish Assignment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Upload Study Material -->
+  <div class="modal-overlay" id="uploadMaterialModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Upload Official Study Material</h3>
+        <button style="background:none; border:none; font-size:1.2rem; cursor:pointer;" onclick="closeModal('uploadMaterialModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleUploadMaterial(event)">
+          <div class="form-group">
+            <label class="form-label">Target Course</label>
+            <select class="form-control" required>
+              <option value="des-201">DES-201: UI/UX Design Systems</option>
+              <option value="des-301">DES-301: Interaction Design</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Document Title</label>
+            <input type="text" class="form-control" placeholder="e.g. Heuristic Evaluation Template.pdf" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">File Type</label>
+            <select class="form-control">
+              <option value="pdf">PDF Lecture Slide</option>
+              <option value="code">Source Code Starter / ZIP</option>
+              <option value="doc">Word / Guidelines DOCX</option>
+            </select>
+          </div>
+          <div style="display:flex; justify-content:flex-end; gap:0.75rem; margin-top:1rem;">
+            <button type="button" class="btn btn-outline btn-sm" onclick="closeModal('uploadMaterialModal')">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    let activeGradingSubId = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderSubmissions();
+      // Populate faculty-specific info from current user
+      const u = getCurrentUser();
+      if (u && u.role === "faculty") {
+        const deptBadge = document.getElementById("facultyDeptBadge");
+        if (deptBadge) deptBadge.textContent = u.department || "Faculty Department";
+      }
+    });
+
+    function switchToStudentRole() {
+      const data = getLernoviqueData();
+      // Switch to the demo student or keep current session
+      setAuthSession(true, data.currentUser);
+    }
+
+    function renderSubmissions() {
+      const data = getLernoviqueData();
+      const tbody = document.getElementById("facultySubmissionsTable");
+      if (!tbody) return;
+
+      const submissions = data.facultySubmissions || [];
+      const needsGrading = submissions.filter(s => s.status === "Needs Grading").length;
+      document.getElementById("pendingGradingCount").textContent = `${needsGrading} Submissions`;
+
+      tbody.innerHTML = submissions.map(sub => `
+        <tr>
+          <td>
+            <div style="font-weight:700;">${sub.studentName}</div>
+            <div style="font-size:0.78rem; color:var(--text-muted);">${sub.rollNo}</div>
+          </td>
+          <td><span class="badge badge-primary">${sub.courseCode}</span></td>
+          <td style="font-size:0.88rem;">${sub.assignmentTitle}</td>
+          <td style="font-size:0.82rem; color:var(--text-muted);">${sub.submittedDate}</td>
+          <td><code style="color:var(--primary); font-size:0.82rem;">${sub.file}</code></td>
+          <td>
+            <span class="badge ${sub.status === 'Graded' ? 'badge-success' : 'badge-accent'}">
+              ${sub.status === 'Graded' ? `Graded (${sub.grade}/100)` : 'Needs Grading'}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm ${sub.status === 'Needs Grading' ? 'btn-primary' : 'btn-outline'}" onclick="openGradingModal('${sub.id}')">
+              ${sub.status === 'Needs Grading' ? '<i class="fa-solid fa-pen-to-square"></i> Grade' : '<i class="fa-solid fa-eye"></i> Review'}
+            </button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function openGradingModal(subId) {
+      activeGradingSubId = subId;
+      const data = getLernoviqueData();
+      const sub = data.facultySubmissions.find(s => s.id === subId);
+      if (!sub) return;
+
+      document.getElementById("gradeModalTitle").textContent = `Grade: ${sub.assignmentTitle}`;
+      document.getElementById("gradeModalStudentInfo").textContent = `Student: ${sub.studentName} (${sub.rollNo}) • File: ${sub.file}`;
+      if (sub.grade) {
+        document.getElementById("inputGradeScore").value = sub.grade;
+      }
+      openModal("gradeSubmissionModal");
+    }
+
+    function confirmEnterGrade() {
+      const score = parseInt(document.getElementById("inputGradeScore").value, 10);
+      const feedback = document.getElementById("inputGradeFeedback").value;
+
+      const data = getLernoviqueData();
+      const sub = data.facultySubmissions.find(s => s.id === activeGradingSubId);
+      if (sub) {
+        sub.grade = score;
+        sub.status = "Graded";
+        saveLernoviqueData(data);
+        closeModal("gradeSubmissionModal");
+        showToast(`Grade ${score}/100 recorded for ${sub.studentName}`, "success");
+        renderSubmissions();
+      }
+    }
+
+    function handleCreateAssignment(e) {
+      e.preventDefault();
+      const courseId = document.getElementById("newAsgCourse").value;
+      const title = document.getElementById("newAsgTitle").value;
+      const desc = document.getElementById("newAsgDesc").value;
+      const due = document.getElementById("newAsgDue").value;
+      const marks = parseInt(document.getElementById("newAsgMarks").value, 10);
+
+      const data = getLernoviqueData();
+      const newAsg = {
+        id: "asg-" + Date.now(),
+        courseId: courseId,
+        courseCode: courseId.toUpperCase(),
+        courseTitle: courseId === "des-201" ? "UI/UX Design Systems" : "Interaction Design",
+        title: title,
+        description: desc,
+        dueDate: due + "T23:59:00",
+        maxMarks: marks,
+        status: "Pending",
+        submittedDate: null,
+        submittedFile: null,
+        grade: null,
+        feedback: null
+      };
+
+      data.assignments.unshift(newAsg);
+      saveLernoviqueData(data);
+      closeModal("createAssignmentModal");
+      showToast("New assignment published to student portal!", "success");
+    }
+
+    function handleUploadMaterial(e) {
+      e.preventDefault();
+      closeModal("uploadMaterialModal");
+      showToast("Study material attachment uploaded to syllabus repository!", "success");
+    }
+  </script>
+</body>
+</html>

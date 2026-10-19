@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Registration | Lernovique - University Online Learning Platform</title>
+  <meta name="description" content="Sign in or register for Lernovique university online learning platform with student or faculty credentials.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .auth-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.04) 0%, rgba(6, 182, 212, 0.05) 100%);
+    }
+    .auth-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-xl);
+      max-width: 500px;
+      width: 100%;
+      padding: 2.5rem;
+    }
+    .role-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      background: var(--bg-subtle);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+    }
+    .role-btn {
+      padding: 0.65rem;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      transition: all var(--transition-fast);
+    }
+    .role-btn.active {
+      background: var(--bg-surface);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .demo-credentials-box {
+      background: var(--primary-light);
+      border: 1px dashed var(--primary);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+    }
+    .demo-chip {
+      display: inline-block;
+      background: var(--bg-surface);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.82rem;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+    }
+    .demo-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-page-wrapper">
+    <div class="auth-card">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <a href="../index.html" class="brand-badge" style="justify-content: center; margin-bottom: 0.75rem;">
+          <img src="../assets/logo.svg" alt="Lernovique" class="brand-logo-img" style="width: 44px; height: 44px;">
+          <span>Lernovique</span>
+        </a>
+        <h1 style="font-size: 1.6rem; margin-bottom: 0.25rem;">University Portal Sign In</h1>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">Learn. Evolve. Achieve.</p>
+      </div>
+
+      <!-- Role Selector -->
+      <label class="form-label">Select Your Academic Role</label>
+      <div class="role-selector" id="roleSelector">
+        <button type="button" class="role-btn active" data-role="student" onclick="setRole('student')">
+          <i class="fa-solid fa-user-graduate"></i> Student
+        </button>
+        <button type="button" class="role-btn" data-role="faculty" onclick="setRole('faculty')">
+          <i class="fa-solid fa-chalkboard-user"></i> Faculty
+        </button>
+      </div>
+
+      <!-- Demo Credentials Notice -->
+      <div class="demo-credentials-box">
+        <div style="font-weight: 700; color: var(--primary); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem;">
+          <i class="fa-solid fa-key"></i> Quick Fill Demo Accounts
+        </div>
+        <div id="demoCredentialsStudent">
+          <strong>Student:</strong> <span class="demo-chip" onclick="quickFill('student@edu.com', '1234')">student@edu.com</span> | Pass: <span class="demo-chip" onclick="quickFill('student@edu.com', '1234')">1234</span>
+        </div>
+        <div id="demoCredentialsFaculty" style="display: none;">
+          <strong>Faculty:</strong> <span class="demo-chip" onclick="quickFill('faculty@edu.com', '1234')">faculty@edu.com</span> | Pass: <span class="demo-chip" onclick="quickFill('faculty@edu.com', '1234')">1234</span>
+        </div>
+        <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 0.35rem;">
+          *Click any credential above to auto-fill.
+        </div>
+      </div>
+
+      <!-- Login / Register Form Tabs -->
+      <div class="tabs-parent">
+        <div class="tabs-nav" style="margin-bottom: 1.25rem;">
+          <button class="tab-btn active" data-tab="tabLogin" id="loginTabBtn">Sign In</button>
+          <button class="tab-btn" data-tab="tabRegister" id="registerTabBtn">Create Account</button>
+        </div>
+
+        <!-- Login Form -->
+        <div class="tab-pane active" id="tabLogin">
+          <form id="loginForm" onsubmit="submitLogin(event)">
+            <div class="form-group">
+              <label class="form-label" for="loginEmail">Institutional Email</label>
+              <input type="email" id="loginEmail" class="form-control" placeholder="e.g. student@edu.com" value="student@edu.com" required>
+            </div>
+
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.45rem;">
+                <label class="form-label" for="loginPassword" style="margin-bottom: 0;">Password</label>
+                <a href="#" onclick="showToast('Use demo password: 1234', 'info'); return false;" style="font-size: 0.78rem;">Forgot password?</a>
+              </div>
+              <input type="password" id="loginPassword" class="form-control" placeholder="Enter password" value="1234" required>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; font-size: 0.85rem;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <input type="checkbox" checked> Remember this device
+              </label>
+              <span class="badge badge-success"><i class="fa-solid fa-lock"></i> SSL Encrypted</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to Portal
+            </button>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div class="tab-pane" id="tabRegister">
+          <form id="registerForm" onsubmit="submitRegister(event)">
+            <div class="form-group">
+              <label class="form-label" for="regName">Full Legal Name</label>
+              <input type="text" id="regName" class="form-control" placeholder="e.g. Priya Patel" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regEmail">Institutional Email (.edu)</label>
+              <input type="email" id="regEmail" class="form-control" placeholder="e.g. priya@edu.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regRole">Academic Role</label>
+              <select id="regRole" class="form-control" onchange="toggleRegIdLabel(this.value)" required>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty / Professor</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regIdField" id="regIdLabel">Roll Number (Student)</label>
+              <input type="text" id="regIdField" class="form-control" placeholder="e.g. CS2026-042 (leave blank to auto-generate)">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regPhone">Contact Phone Number</label>
+              <input type="tel" id="regPhone" class="form-control" placeholder="e.g. +91 98765 43210 (leave blank for default)">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regDept">Department / Program</label>
+              <select id="regDept" class="form-control" required>
+                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
+                <option value="Human-Centered Design">Human-Centered Design</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="regPassword">Create Password</label>
+              <input type="password" id="regPassword" class="form-control" placeholder="Minimum 4 characters" minlength="4" required>
+            </div>
+
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              By registering, you agree to the university <a href="help.html">Acceptable Use Policy</a>.
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-user-plus"></i> Register Academic Account
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 1.75rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+        <a href="../index.html" style="font-size: 0.85rem; color: var(--text-muted);">
+          <i class="fa-solid fa-arrow-left"></i> Return to Homepage
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    let activeRole = "student";
+
+    function setRole(role) {
+      activeRole = role;
+      document.querySelectorAll(".role-btn").forEach(b => {
+        b.classList.toggle("active", b.getAttribute("data-role") === role);
+      });
+
+      if (document.getElementById("regRole")) {
+        document.getElementById("regRole").value = role;
+        toggleRegIdLabel(role);
+      }
+
+      if (role === "student") {
+        document.getElementById("demoCredentialsStudent").style.display = "block";
+        document.getElementById("demoCredentialsFaculty").style.display = "none";
+        document.getElementById("loginEmail").value = "student@edu.com";
+      } else {
+        document.getElementById("demoCredentialsStudent").style.display = "none";
+        document.getElementById("demoCredentialsFaculty").style.display = "block";
+        document.getElementById("loginEmail").value = "faculty@edu.com";
+      }
+      document.getElementById("loginPassword").value = "1234";
+    }
+
+    function toggleRegIdLabel(role) {
+      const label = document.getElementById("regIdLabel");
+      const input = document.getElementById("regIdField");
+      if (role === "faculty") {
+        label.textContent = "Employee ID (Faculty)";
+        input.placeholder = "e.g. FAC-EMP-108 (leave blank to auto-generate)";
+      } else {
+        label.textContent = "Roll Number (Student)";
+        input.placeholder = "e.g. CS2026-042 (leave blank to auto-generate)";
+      }
+    }
+
+    function quickFill(email, pass) {
+      document.getElementById("loginEmail").value = email;
+      document.getElementById("loginPassword").value = pass;
+      showToast("Credentials filled!", "info");
+    }
+
+    function submitLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value.trim();
+      const pass = document.getElementById("loginPassword").value.trim();
+
+      if (!email || !pass) {
+        showToast("Please enter email and password", "error");
+        return;
+      }
+      handleLogin(email, pass, activeRole);
+    }
+
+    function submitRegister(e) {
+      e.preventDefault();
+      const name = document.getElementById("regName").value.trim();
+      const email = document.getElementById("regEmail").value.trim();
+      const role = document.getElementById("regRole").value;
+      const dept = document.getElementById("regDept").value;
+      const pass = document.getElementById("regPassword").value;
+      let idField = document.getElementById("regIdField").value.trim();
+      let phone = document.getElementById("regPhone").value.trim();
+
+      if (!name || !email) {
+        showToast("Please complete all registration fields", "error");
+        return;
+      }
+
+      const isFac = role === "faculty";
+      if (!idField) {
+        idField = isFac 
+          ? "FAC-EMP-" + Math.floor(100 + Math.random() * 900)
+          : "CS2026-0" + Math.floor(10 + Math.random() * 90);
+      }
+      if (!phone) {
+        phone = "+91 98" + Math.floor(10000000 + Math.random() * 90000000);
+      }
+
+      // Create new user session
+      const nameParts = name.trim().split(" ");
+      const firstName = nameParts[0] || name;
+      const lastName = nameParts.slice(1).join(" ") || "";
+      const initials = ((firstName[0] || "") + (lastName[0] || (firstName[1] || ""))).toUpperCase() || "US";
+
+      const newUser = {
+        id: "usr_" + Date.now(),
+        name: name,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        role: role,
+        department: dept,
+        rollNo: isFac ? undefined : idField,
+        employeeId: isFac ? idField : undefined,
+        phone: phone,
+        avatar: initials,
+        semester: isFac ? undefined : "Semester 5 (Fall 2026)",
+        university: "Apex Institute of Technology, Pune",
+        gpa: isFac ? undefined : 8.50,
+        enrolledCourses: ["des-201", "cse-301"]
+      };
+
+      // Persist in mock data registeredUsers array
+      const data = getLernoviqueData();
+      if (!data.registeredUsers) data.registeredUsers = [];
+      const existingIdx = data.registeredUsers.findIndex(u => u.email.toLowerCase() === email.toLowerCase());
+      if (existingIdx !== -1) {
+        data.registeredUsers[existingIdx] = newUser;
+      } else {
+        data.registeredUsers.push(newUser);
+      }
+      saveLernoviqueData(data);
+
+      setCurrentUser(newUser);
+      setAuthSession(true, newUser);
+
+      // Pre-initialize isolated data slices for new user
+      if (typeof getUserDataSlice === "function") {
+        getUserDataSlice(email, "assignments", typeof createDefaultAssignmentsForUser === "function" ? createDefaultAssignmentsForUser : null);
+        getUserDataSlice(email, "messages", typeof createDefaultMessagesForUser === "function" ? createDefaultMessagesForUser : null);
+      }
+
+      showToast(`Registration successful! Welcome, ${firstName}!`, "success");
+      setTimeout(() => {
+        if (role === "faculty") {
+          window.location.href = "faculty-dashboard.html";
+        } else {
+          window.location.href = "dashboard.html";
+        }
+      }, 700);
+    }
+
+    // Check query params if directed to register
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabParam = getUrlParam("tab");
+      if (tabParam === "register") {
+        document.getElementById("registerTabBtn").click();
+      }
+    });
+  </script>
+</body>
+</html>

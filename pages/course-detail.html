@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details | Lernovique - University Online Learning Platform</title>
+  <meta name="description" content="Detailed curriculum, video lectures with mark-as-complete, study material downloads, assignments, and discussion threads.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .course-banner {
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      color: #FFFFFF;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .video-player-container {
+      background: #000000;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+    .video-player-container video {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+    .lecture-playlist-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 0.6rem;
+      background: var(--bg-surface);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .lecture-playlist-item:hover {
+      border-color: var(--primary);
+      background: var(--bg-subtle);
+    }
+    .lecture-playlist-item.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+    .file-item-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+    }
+    .discussion-bubble {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand-badge">
+          <img src="../assets/logo.svg" alt="Lernovique" class="brand-logo-img">
+          <span>Lernovique</span>
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-section-title">Academic Main</li>
+        <li><a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+        <li><a href="courses.html" class="sidebar-link active"><i class="fa-solid fa-graduation-cap"></i> Courses Catalog</a></li>
+        <li><a href="live.html" class="sidebar-link"><i class="fa-solid fa-video"></i> Live Lectures</a></li>
+        <li><a href="assignments.html" class="sidebar-link"><i class="fa-solid fa-list-check"></i> Assignments</a></li>
+        <li><a href="grades.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Grades & GPA</a></li>
+
+        <li class="sidebar-section-title">Communication</li>
+        <li><a href="messages.html" class="sidebar-link"><i class="fa-solid fa-comments"></i> Messages <span class="badge badge-accent" style="margin-left:auto;">3</span></a></li>
+        <li><a href="profile.html" class="sidebar-link"><i class="fa-solid fa-user-gear"></i> Profile & Settings</a></li>
+
+        <li class="sidebar-section-title">Help</li>
+        <li><a href="faculty-dashboard.html" class="sidebar-link"><i class="fa-solid fa-chalkboard-user"></i> Switch to Faculty/Student</a></li>
+        <li><a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> Help & FAQ</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="window.location.href='profile.html'">
+          <div class="user-avatar auth-user-avatar">US</div>
+          <div class="user-info-text">
+            <div class="user-name auth-user-name">User Account</div>
+            <div class="user-role-label auth-user-role">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button class="mobile-toggle-btn" aria-label="Open Sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="breadcrumb-nav">
+            <a href="courses.html">Courses</a>
+            <span class="breadcrumb-separator">/</span>
+            <span id="breadcrumbCourseCode">Course Detail</span>
+          </div>
+        </div>
+
+        <div class="navbar-right">
+          <button class="btn btn-icon-only btn-subtle theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <!-- Dynamic Course Banner -->
+        <div class="course-banner" id="courseBanner">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <div>
+              <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span class="badge" id="courseCodeBadge" style="background: rgba(255,255,255,0.25); color: #fff;">DES-201</span>
+                <span class="badge badge-accent" id="courseCreditsBadge">4 Credits</span>
+                <span class="badge" style="background: rgba(0,0,0,0.25); color: #fff;" id="courseLevelBadge">Intermediate</span>
+              </div>
+              <h1 style="color: #FFFFFF; font-size: 2rem; margin-bottom: 0.5rem;" id="courseDetailTitle">
+                UI/UX Design Systems & Usability Engineering
+              </h1>
+              <div style="font-size: 0.95rem; color: #E0E7FF; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                <span><i class="fa-solid fa-user-tie"></i> <span id="courseInstructor">Dr. Priya Kulkarni</span></span>
+                <span><i class="fa-solid fa-star" style="color: #FCD34D;"></i> <span id="courseRating">4.9</span> (184 students)</span>
+                <span><i class="fa-solid fa-building-columns"></i> Apex Institute of Technology</span>
+              </div>
+            </div>
+            <div id="enrollActionButton">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Progress summary inside banner -->
+          <div style="background: rgba(0,0,0,0.2); padding: 1rem 1.25rem; border-radius: var(--radius-md); max-width: 500px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem;">
+              <span>Your Curriculum Progress</span>
+              <strong id="courseProgressPercent">68% Completed</strong>
+            </div>
+            <div class="progress-bar-container" style="background: rgba(255,255,255,0.2);">
+              <div class="progress-bar-fill" id="courseProgressBar" style="width: 68%; background: #22D3EE;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Tabs Navigation -->
+        <div class="tabs-parent">
+          <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="tabOverview"><i class="fa-solid fa-circle-info"></i> Course Overview</button>
+            <button class="tab-btn" data-tab="tabLectures"><i class="fa-solid fa-circle-play"></i> Video Lectures (12)</button>
+            <button class="tab-btn" data-tab="tabMaterials"><i class="fa-solid fa-folder-open"></i> Study Material</button>
+            <button class="tab-btn" data-tab="tabAssignments"><i class="fa-solid fa-list-check"></i> Assignments</button>
+            <button class="tab-btn" data-tab="tabDiscussion"><i class="fa-solid fa-comments"></i> Discussion Forum</button>
+          </div>
+
+          <!-- TAB 1: Overview -->
+          <div class="tab-pane active" id="tabOverview">
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+              <div>
+                <div class="card" style="margin-bottom: 1.5rem;">
+                  <h3 style="margin-bottom: 1rem;">Course Summary</h3>
+                  <p id="courseOverviewText" style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem;">
+                    Loading overview...
+                  </p>
+
+                  <h4 style="margin-bottom: 0.75rem;">Learning Outcomes</h4>
+                  <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; color: var(--text-muted); font-size: 0.92rem;">
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--success); margin-right: 0.5rem;"></i> Formulate empirical user research protocols, empathy maps, and journey flows.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--success); margin-right: 0.5rem;"></i> Construct scalable design token architectures compliant with WCAG 2.1 AA specifications.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--success); margin-right: 0.5rem;"></i> Conduct rigorous Nielsen Norman 10 Usability Heuristics audits on live digital platforms.</li>
+                    <li><i class="fa-solid fa-circle-check" style="color: var(--success); margin-right: 0.5rem;"></i> Formulate developer handoff specifications with accessible responsive redlines.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div>
+                <div class="card" style="margin-bottom: 1.5rem;">
+                  <h4 style="margin-bottom: 1rem;">Course Faculty</h4>
+                  <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="user-avatar" style="width: 50px; height: 50px; font-size: 1.2rem; background: linear-gradient(135deg, #4F46E5, #06B6D4);" id="instructorAvatar">PK</div>
+                    <div>
+                      <div style="font-weight: 700;" id="instructorName">Dr. Priya Kulkarni</div>
+                      <div style="font-size: 0.8rem; color: var(--text-muted);">Professor & Head of HCI</div>
+                    </div>
+                  </div>
+                  <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    PhD in Human-Computer Interaction. 15+ years researching usability engineering, accessibility architectures, and pedagogical tools.
+                  </p>
+                  <a href="messages.html" class="btn btn-outline btn-sm" style="width: 100%;">
+                    <i class="fa-solid fa-message"></i> Send Direct Message
+                  </a>
+                </div>
+
+                <div class="card">
+                  <h4 style="margin-bottom: 1rem;">Syllabus Breakdown</h4>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-subtle);">
+                    <span>Lectures</span><strong>12 Modules (36 Hrs)</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-subtle);">
+                    <span>Continuous Assessment</span><strong>40% Weightage</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.5rem 0; border-bottom: 1px solid var(--border-subtle);">
+                    <span>Mid-Semester Exam</span><strong>20% Weightage</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; padding: 0.5rem 0;">
+                    <span>End-Semester Defense</span><strong>40% Weightage</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: Video Lectures & Player UI -->
+          <div class="tab-pane" id="tabLectures">
+            <div style="display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 2rem;">
+              <!-- Video Player Column -->
+              <div>
+                <div class="video-player-container">
+                  <video id="courseVideoPlayer" controls poster="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000&auto=format&fit=crop&q=80">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+
+                <div class="card" style="margin-bottom: 1.5rem;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+                    <h3 id="currentPlayingTitle" style="font-size: 1.2rem;">Lecture 1: Introduction to User-Centered Design (UCD)</h3>
+                    <button class="btn btn-primary btn-sm" id="btnMarkLectureComplete" onclick="toggleCurrentLectureComplete()">
+                      <i class="fa-solid fa-check"></i> Mark as Completed
+                    </button>
+                  </div>
+                  <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                    In this session, we investigate the fundamental tenets of User-Centered Design (ISO 9241-210), differentiating between aesthetic design and functional usability engineering.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Playlist Column -->
+              <div>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title"><i class="fa-solid fa-list-ol" style="color: var(--primary);"></i> Lecture Playlist</div>
+                    <span class="badge badge-primary" id="playlistCounterBadge">8 / 12 Completed</span>
+                  </div>
+                  <div id="lecturePlaylistContainer" style="max-height: 520px; overflow-y: auto;">
+                    <!-- Rendered via JS -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: Study Material Downloads -->
+          <div class="tab-pane" id="tabMaterials">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><i class="fa-solid fa-file-arrow-down" style="color: var(--primary);"></i> Downloadable Course Attachments</div>
+                <button class="btn btn-outline btn-sm" onclick="showToast('Downloading all course assets (.zip)...', 'info')">
+                  <i class="fa-solid fa-download"></i> Download All as .ZIP
+                </button>
+              </div>
+              <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                Official lecture slides, research rubrics, laboratory starter codes, and exam revision cheat sheets verified by the department.
+              </p>
+
+              <div id="courseMaterialsContainer">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 4: Assignments -->
+          <div class="tab-pane" id="tabAssignments">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-title"><i class="fa-solid fa-list-check" style="color: var(--primary);"></i> Course Evaluation Tasks</div>
+                <a href="assignments.html" class="btn btn-outline btn-sm">Assignments Portal <i class="fa-solid fa-arrow-right"></i></a>
+              </div>
+
+              <div id="courseAssignmentsList" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 5: Discussion Forum -->
+          <div class="tab-pane" id="tabDiscussion">
+            <div class="card" style="margin-bottom: 2rem;">
+              <h3 style="margin-bottom: 1rem;">Ask a Question / Start a Thread</h3>
+              <form onsubmit="postDiscussionComment(event)">
+                <div class="form-group">
+                  <textarea id="discussionInput" class="form-control" rows="3" placeholder="Share your inquiry, lecture clarification, or study resource with classmates and faculty..." required></textarea>
+                </div>
+                <div style="display: flex; justify-content: flex-end;">
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-paper-plane"></i> Post to Discussion Board
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div id="courseDiscussionsList">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    let currentCourse = null;
+    let currentLectureIndex = 0;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const courseId = getUrlParam("id") || "des-201";
+      const data = getLernoviqueData();
+      currentCourse = data.courses.find(c => c.id === courseId) || data.courses[0];
+
+      loadCourseDetails(currentCourse);
+    });
+
+    function loadCourseDetails(c) {
+      document.getElementById("breadcrumbCourseCode").textContent = c.code;
+      document.getElementById("courseCodeBadge").textContent = c.code;
+      document.getElementById("courseCreditsBadge").textContent = `${c.credits} Credits`;
+      document.getElementById("courseLevelBadge").textContent = c.level;
+      document.getElementById("courseDetailTitle").textContent = c.title;
+      document.getElementById("courseInstructor").textContent = c.instructor;
+      document.getElementById("instructorName").textContent = c.instructor;
+      document.getElementById("courseRating").textContent = c.rating;
+      document.getElementById("courseBanner").style.background = c.thumbnailGradient;
+      document.getElementById("courseOverviewText").textContent = c.overview || c.description;
+
+      const progressPercent = c.progress || 0;
+      document.getElementById("courseProgressPercent").textContent = `${progressPercent}% Completed`;
+      document.getElementById("courseProgressBar").style.width = `${progressPercent}%`;
+
+      // Enroll button check
+      const auth = getAuthSession();
+      const userEnrolled = (auth && auth.user && auth.user.enrolledCourses) ? auth.user.enrolledCourses : [];
+      const isEnrolled = userEnrolled.includes(c.id);
+      const enrollBox = document.getElementById("enrollActionButton");
+      if (isEnrolled) {
+        enrollBox.innerHTML = `<span class="badge badge-success" style="font-size: 0.95rem; padding: 0.5rem 1rem;"><i class="fa-solid fa-circle-check"></i> Enrolled in Course</span>`;
+      } else {
+        enrollBox.innerHTML = `<button class="btn btn-secondary btn-sm" onclick="enrollCurrentCourse()"><i class="fa-solid fa-plus"></i> Enroll in Curriculum</button>`;
+      }
+
+      renderPlaylist(c);
+      renderMaterials(c);
+      renderAssignments(c);
+      renderDiscussions(c);
+    }
+
+    function enrollCurrentCourse() {
+      const auth = getAuthSession();
+      if (auth && auth.user) {
+        if (!auth.user.enrolledCourses) auth.user.enrolledCourses = [];
+        if (!auth.user.enrolledCourses.includes(currentCourse.id)) {
+          auth.user.enrolledCourses.push(currentCourse.id);
+          setAuthSession(true, auth.user);
+
+          const data = getLernoviqueData();
+          if (data.registeredUsers) {
+            const idx = data.registeredUsers.findIndex(u => u.email === auth.user.email);
+            if (idx !== -1) {
+              data.registeredUsers[idx] = auth.user;
+              saveLernoviqueData(data);
+            }
+          }
+          showToast(`Enrolled in ${currentCourse.title}!`, "success");
+          loadCourseDetails(currentCourse);
+        }
+      }
+    }
+
+    function renderPlaylist(c) {
+      const container = document.getElementById("lecturePlaylistContainer");
+      if (!c.lectures || c.lectures.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted); padding:1rem;">No lectures recorded yet for this module.</p>`;
+        return;
+      }
+
+      const completedCount = c.lectures.filter(l => l.completed).length;
+      document.getElementById("playlistCounterBadge").textContent = `${completedCount} / ${c.lectures.length} Completed`;
+
+      container.innerHTML = c.lectures.map((lec, idx) => `
+        <div class="lecture-playlist-item ${idx === currentLectureIndex ? 'active' : ''}" onclick="selectLecture(${idx})">
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex: 1;">
+            <i class="fa-solid ${lec.completed ? 'fa-circle-check' : 'fa-circle-play'}" style="color: ${lec.completed ? 'var(--success)' : 'var(--text-muted)'};"></i>
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 600;">${lec.title}</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);"><i class="fa-solid fa-clock"></i> ${lec.duration}</div>
+            </div>
+          </div>
+          ${lec.completed ? '<span class="badge badge-success btn-sm" style="font-size:0.7rem;">Done</span>' : ''}
+        </div>
+      `).join("");
+    }
+
+    function selectLecture(index) {
+      currentLectureIndex = index;
+      const lecture = currentCourse.lectures[index];
+      const videoPlayer = document.getElementById("courseVideoPlayer");
+      
+      document.getElementById("currentPlayingTitle").textContent = lecture.title;
+      if (lecture.videoUrl) {
+        videoPlayer.src = lecture.videoUrl;
+        videoPlayer.play();
+      }
+
+      const btnComplete = document.getElementById("btnMarkLectureComplete");
+      if (lecture.completed) {
+        btnComplete.innerHTML = `<i class="fa-solid fa-circle-check"></i> Completed`;
+        btnComplete.className = "btn btn-outline btn-sm";
+      } else {
+        btnComplete.innerHTML = `<i class="fa-solid fa-check"></i> Mark as Completed`;
+        btnComplete.className = "btn btn-primary btn-sm";
+      }
+
+      renderPlaylist(currentCourse);
+    }
+
+    function toggleCurrentLectureComplete() {
+      if (!currentCourse.lectures || !currentCourse.lectures[currentLectureIndex]) return;
+      const lec = currentCourse.lectures[currentLectureIndex];
+      lec.completed = !lec.completed;
+
+      // recalculate course progress
+      const total = currentCourse.lectures.length;
+      const done = currentCourse.lectures.filter(l => l.completed).length;
+      currentCourse.completedLectures = done;
+      currentCourse.progress = Math.round((done / total) * 100);
+
+      const data = getLernoviqueData();
+      const courseInStorage = data.courses.find(c => c.id === currentCourse.id);
+      if (courseInStorage) {
+        courseInStorage.lectures = currentCourse.lectures;
+        courseInStorage.completedLectures = done;
+        courseInStorage.progress = currentCourse.progress;
+        saveLernoviqueData(data);
+      }
+
+      showToast(lec.completed ? "Lecture marked complete!" : "Lecture status updated", "success");
+      loadCourseDetails(currentCourse);
+      selectLecture(currentLectureIndex);
+    }
+
+    function renderMaterials(c) {
+      const container = document.getElementById("courseMaterialsContainer");
+      if (!c.materials || c.materials.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted);">No materials uploaded yet.</p>`;
+        return;
+      }
+      container.innerHTML = c.materials.map(m => `
+        <div class="file-item-card">
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; border-radius: 8px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+              <i class="fa-solid ${m.type === 'pdf' ? 'fa-file-pdf' : (m.type === 'code' ? 'fa-file-code' : 'fa-file-lines')}"></i>
+            </div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.92rem;">${m.name}</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">${m.size} • Uploaded ${m.date}</div>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Simulating download: ${m.name}', 'success')">
+            <i class="fa-solid fa-download"></i> Download
+          </button>
+        </div>
+      `).join("");
+    }
+
+    function renderAssignments(c) {
+      const container = document.getElementById("courseAssignmentsList");
+      const data = getLernoviqueData();
+      const assignments = data.assignments.filter(a => a.courseId === c.id);
+
+      if (assignments.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted);">No assignments posted for this course.</p>`;
+        return;
+      }
+
+      container.innerHTML = assignments.map(a => `
+        <div style="padding: 1.25rem; border: 1px solid var(--border-color); border-radius: var(--radius-lg); background: var(--bg-surface); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <span class="badge ${a.status === 'Graded' ? 'badge-success' : (a.status === 'Submitted' ? 'badge-primary' : 'badge-accent')}">
+                ${a.status}
+              </span>
+              <span style="font-weight: 700; font-size: 1rem;">${a.title}</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; max-width: 600px;">${a.description}</p>
+            <div style="font-size: 0.78rem; color: var(--text-muted); display: flex; gap: 1.25rem;">
+              <span><i class="fa-solid fa-clock"></i> Due: ${formatDate(a.dueDate)}</span>
+              <span><i class="fa-solid fa-star"></i> Max Marks: ${a.maxMarks}</span>
+              ${a.grade ? `<span style="color: var(--success); font-weight: 700;"><i class="fa-solid fa-award"></i> Awarded: ${a.grade}/100</span>` : ''}
+            </div>
+          </div>
+          <a href="assignments.html?asg=${a.id}" class="btn btn-primary btn-sm">
+            ${a.status === 'Pending' ? '<i class="fa-solid fa-upload"></i> Submit File' : '<i class="fa-solid fa-eye"></i> View Submission'}
+          </a>
+        </div>
+      `).join("");
+    }
+
+    function renderDiscussions(c) {
+      const container = document.getElementById("courseDiscussionsList");
+      if (!c.discussions || c.discussions.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted);">No discussions started yet. Be the first to ask a question!</p>`;
+        return;
+      }
+
+      container.innerHTML = c.discussions.map(d => `
+        <div class="discussion-bubble">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="user-avatar" style="width: 36px; height: 36px; font-size: 0.82rem;">${d.avatar}</div>
+              <div>
+                <span style="font-weight: 700; font-size: 0.9rem;">${d.author}</span>
+                <span class="badge ${d.role === 'Instructor' ? 'badge-primary' : 'badge-subtle'}" style="margin-left: 0.4rem; font-size: 0.7rem;">${d.role}</span>
+              </div>
+            </div>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">${d.date}</span>
+          </div>
+          <p style="font-size: 0.9rem; line-height: 1.5; color: var(--text-main); margin-bottom: 0.75rem;">${d.comment}</p>
+          <div style="display: flex; gap: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+            <button style="background:none; border:none; cursor:pointer; color:inherit;" onclick="showToast('Upvoted comment!', 'info')">
+              <i class="fa-solid fa-thumbs-up"></i> ${d.upvotes} Upvotes
+            </button>
+            <button style="background:none; border:none; cursor:pointer; color:inherit;" onclick="showToast('Reply interface opened', 'info')">
+              <i class="fa-solid fa-reply"></i> Reply (${d.replies})
+            </button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function postDiscussionComment(e) {
+      e.preventDefault();
+      const input = document.getElementById("discussionInput");
+      const text = input.value.trim();
+      const auth = getAuthSession();
+      const currentUserObj = getCurrentUser();
+      const currentUserName = (currentUserObj && currentUserObj.name) ? currentUserObj.name : "Anonymous Student";
+      const currentUserRole = (currentUserObj && currentUserObj.role === "faculty") ? "Instructor" : "Student";
+      const currentUserAvatar = (currentUserObj && currentUserObj.avatar) ? currentUserObj.avatar : "US";
+
+      const newDisc = {
+        id: "disc-" + Date.now(),
+        author: currentUserName,
+        role: currentUserRole,
+        avatar: currentUserAvatar,
+        date: "Just now",
+        comment: text,
+        upvotes: 0,
+        replies: 0
+      };
+
+      if (!currentCourse.discussions) currentCourse.discussions = [];
+      currentCourse.discussions.unshift(newDisc);
+
+      const data = getLernoviqueData();
+      const c = data.courses.find(item => item.id === currentCourse.id);
+      if (c) {
+        c.discussions = currentCourse.discussions;
+        saveLernoviqueData(data);
+      }
+
+      input.value = "";
+      showToast("Question posted to course discussion board!", "success");
+      renderDiscussions(currentCourse);
+    }
+  </script>
+</body>
+</html>

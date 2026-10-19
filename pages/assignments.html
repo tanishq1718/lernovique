@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignments & Submissions | Lernovique - University Online Learning Platform</title>
+  <meta name="description" content="View coursework assignments, submit files via drag-and-drop, track evaluation rubrics and grades.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .dropzone-area {
+      border: 2px dashed var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      background: var(--primary-light);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-bottom: 1.25rem;
+    }
+    .dropzone-area:hover, .dropzone-area.dragover {
+      background: rgba(79, 70, 229, 0.15);
+      border-color: var(--primary-hover);
+      transform: scale(1.01);
+    }
+    .status-tab-btn {
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .status-tab-btn.active {
+      background: var(--primary);
+      color: #FFF;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand-badge">
+          <img src="../assets/logo.svg" alt="Lernovique" class="brand-logo-img">
+          <span>Lernovique</span>
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-section-title">Academic Main</li>
+        <li><a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+        <li><a href="courses.html" class="sidebar-link"><i class="fa-solid fa-graduation-cap"></i> Courses Catalog</a></li>
+        <li><a href="live.html" class="sidebar-link"><i class="fa-solid fa-video"></i> Live Lectures</a></li>
+        <li><a href="assignments.html" class="sidebar-link active"><i class="fa-solid fa-list-check"></i> Assignments</a></li>
+        <li><a href="grades.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Grades & GPA</a></li>
+
+        <li class="sidebar-section-title">Communication</li>
+        <li><a href="messages.html" class="sidebar-link"><i class="fa-solid fa-comments"></i> Messages <span class="badge badge-accent" style="margin-left:auto;">3</span></a></li>
+        <li><a href="profile.html" class="sidebar-link"><i class="fa-solid fa-user-gear"></i> Profile & Settings</a></li>
+
+        <li class="sidebar-section-title">Help</li>
+        <li><a href="faculty-dashboard.html" class="sidebar-link"><i class="fa-solid fa-chalkboard-user"></i> Switch to Faculty/Student</a></li>
+        <li><a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> Help & FAQ</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="window.location.href='profile.html'">
+          <div class="user-avatar auth-user-avatar">US</div>
+          <div class="user-info-text">
+            <div class="user-name auth-user-name">User Account</div>
+            <div class="user-role-label auth-user-role">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button class="mobile-toggle-btn" aria-label="Open Sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="breadcrumb-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Assignments</span>
+          </div>
+        </div>
+
+        <div class="navbar-right">
+          <button class="btn btn-icon-only btn-subtle theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Course Assignments & Submissions</h1>
+            <p class="page-subtitle">Track deadlines, upload project deliverables, and inspect faculty feedback.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem;" id="statusFilterBar">
+            <button class="status-tab-btn active" data-filter="all" onclick="filterByStatus('all', this)">All (10)</button>
+            <button class="status-tab-btn" data-filter="Pending" onclick="filterByStatus('Pending', this)">
+              <span class="status-dot pending"></span> Pending (2)
+            </button>
+            <button class="status-tab-btn" data-filter="Submitted" onclick="filterByStatus('Submitted', this)">
+              <span class="status-dot active"></span> Submitted (2)
+            </button>
+            <button class="status-tab-btn" data-filter="Graded" onclick="filterByStatus('Graded', this)">
+              <span class="status-dot" style="background:#10B981;"></span> Graded (6)
+            </button>
+          </div>
+        </div>
+
+        <!-- Assignments List Container -->
+        <div id="assignmentsListContainer" style="display: flex; flex-direction: column; gap: 1.25rem;">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Submission Modal Dialog -->
+  <div class="modal-overlay" id="submissionModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalAsgTitle" style="font-size: 1.15rem;">Submit Course Deliverable</h3>
+        <button style="background:none; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-muted);" onclick="closeModal('submissionModal')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;" id="modalAsgMeta">
+          Course: DES-201 • Due Date: Oct 25, 2026
+        </div>
+
+        <!-- Drag & Drop Zone -->
+        <div class="dropzone-area" id="dropzone" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" style="display:none;" onchange="handleFileSelect(event)">
+          <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 0.75rem;"></i>
+          <div style="font-weight: 700; font-size: 1rem; margin-bottom: 0.35rem;" id="dropzoneText">
+            Click to upload or drag & drop files here
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">
+            Supported formats: PDF, ZIP, SQL, IPYNB, DOCX (Max: 50MB)
+          </div>
+        </div>
+
+        <div id="selectedFileInfo" style="display:none; background:var(--bg-subtle); padding:0.75rem 1rem; border-radius:var(--radius-md); margin-bottom:1.25rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display:flex; align-items:center; gap:0.5rem; font-size:0.88rem; font-weight:600;">
+              <i class="fa-solid fa-file-check" style="color:var(--success);"></i>
+              <span id="selectedFileName">file.pdf</span>
+            </div>
+            <span class="badge badge-success">Ready</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="submissionComments">Student Notes to Instructor (Optional)</label>
+          <textarea id="submissionComments" class="form-control" rows="3" placeholder="Add commentary regarding test coverage, heuristic assumptions, or team contributions..."></textarea>
+        </div>
+
+        <div style="font-size: 0.78rem; color: var(--text-muted); display:flex; gap:0.5rem; align-items:center;">
+          <i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i>
+          <span>Academic Integrity verified via Turnitin plagiarism check.</span>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" onclick="closeModal('submissionModal')">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="btnConfirmSubmit" onclick="confirmSubmitAssignment()">
+          <i class="fa-solid fa-paper-plane"></i> Finalize Submission
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    let activeFilter = "all";
+    let activeSubmitAsgId = null;
+    let selectedFileObject = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderAssignmentsList();
+
+      // Check if URL has asg ID to open submit directly
+      const asgParam = getUrlParam("asg");
+      if (asgParam) {
+        openSubmitModal(asgParam);
+      }
+
+      setupDragAndDrop();
+    });
+
+    function filterByStatus(status, btn) {
+      activeFilter = status;
+      document.querySelectorAll(".status-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderAssignmentsList();
+    }
+
+    function renderAssignmentsList() {
+      const data = getLernoviqueData();
+      const container = document.getElementById("assignmentsListContainer");
+
+      const filtered = data.assignments.filter(a => {
+        if (activeFilter === "all") return true;
+        return a.status === activeFilter;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="card" style="text-align:center; padding:3rem;">
+            <i class="fa-solid fa-circle-check" style="font-size:2.5rem; color:var(--success); margin-bottom:1rem;"></i>
+            <h3>No assignments found in this status</h3>
+            <p style="color:var(--text-muted);">You're all caught up with your academic deliverables.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(a => {
+        let badgeClass = "badge-accent";
+        let statusIcon = "fa-clock";
+        if (a.status === "Graded") {
+          badgeClass = "badge-success";
+          statusIcon = "fa-circle-check";
+        } else if (a.status === "Submitted") {
+          badgeClass = "badge-primary";
+          statusIcon = "fa-cloud-arrow-up";
+        }
+
+        // Calculate deadline countdown / remaining days
+        const dueDate = new Date(a.dueDate);
+        const now = new Date();
+        const diffMs = dueDate - now;
+        const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+        const deadlineText = diffDays > 0 ? `${diffDays} days remaining` : "Deadline passed";
+
+        return `
+          <div class="card card-interactive" style="border-left: 5px solid ${a.status === 'Graded' ? 'var(--success)' : (a.status === 'Submitted' ? 'var(--primary)' : 'var(--accent)')};">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 0.75rem;">
+              <div>
+                <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem;">
+                  <span class="badge ${badgeClass}"><i class="fa-solid ${statusIcon}"></i> ${a.status}</span>
+                  <span class="badge badge-subtle">${a.courseCode}</span>
+                  <span style="font-size: 0.78rem; color: ${diffDays <= 3 && a.status === 'Pending' ? 'var(--danger)' : 'var(--text-muted)'}; font-weight: 600;">
+                    <i class="fa-solid fa-hourglass"></i> ${deadlineText}
+                  </span>
+                </div>
+                <h3 style="font-size: 1.15rem; margin-bottom: 0.35rem;">${a.title}</h3>
+                <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+                  ${a.courseTitle}
+                </div>
+              </div>
+
+              <div>
+                ${a.status === 'Pending' ? `
+                  <button class="btn btn-primary btn-sm" onclick="openSubmitModal('${a.id}')">
+                    <i class="fa-solid fa-upload"></i> Submit Deliverable
+                  </button>
+                ` : `
+                  <button class="btn btn-outline btn-sm" onclick="openSubmitModal('${a.id}')">
+                    <i class="fa-solid fa-eye"></i> View Submission
+                  </button>
+                `}
+              </div>
+            </div>
+
+            <p style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.5;">
+              ${a.description}
+            </p>
+
+            <div style="background: var(--bg-subtle); padding: 0.85rem 1rem; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; font-size: 0.82rem;">
+              <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                <span><strong>Due Date:</strong> ${formatDate(a.dueDate)} 11:59 PM</span>
+                <span><strong>Max Marks:</strong> ${a.maxMarks}</span>
+                ${a.submittedFile ? `<span><strong>Submitted:</strong> <code style="color:var(--primary);">${a.submittedFile}</code></span>` : ''}
+              </div>
+
+              ${a.grade ? `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="color: var(--text-muted);">Faculty Score:</span>
+                  <span class="badge badge-success" style="font-size: 0.9rem; padding: 0.35rem 0.65rem;">
+                    <i class="fa-solid fa-award"></i> ${a.grade} / 100
+                  </span>
+                </div>
+              ` : ''}
+            </div>
+
+            ${a.feedback ? `
+              <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--radius-md); background: rgba(16, 185, 129, 0.08); border-left: 3px solid var(--success); font-size: 0.85rem;">
+                <strong>Faculty Feedback:</strong> "${a.feedback}"
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function openSubmitModal(asgId) {
+      activeSubmitAsgId = asgId;
+      const data = getLernoviqueData();
+      const asg = data.assignments.find(a => a.id === asgId);
+      if (!asg) return;
+
+      document.getElementById("modalAsgTitle").textContent = asg.title;
+      document.getElementById("modalAsgMeta").textContent = `${asg.courseCode} • Due: ${formatDate(asg.dueDate)}`;
+
+      if (asg.submittedFile) {
+        document.getElementById("selectedFileInfo").style.display = "block";
+        document.getElementById("selectedFileName").textContent = asg.submittedFile;
+        document.getElementById("dropzoneText").textContent = "File already attached (click to replace)";
+      } else {
+        document.getElementById("selectedFileInfo").style.display = "none";
+        document.getElementById("dropzoneText").textContent = "Click to upload or drag & drop files here";
+      }
+
+      openModal("submissionModal");
+    }
+
+    function setupDragAndDrop() {
+      const dropzone = document.getElementById("dropzone");
+      ["dragenter", "dragover"].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropzone.classList.add("dragover");
+        });
+      });
+      ["dragleave", "drop"].forEach(eventName => {
+        dropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          dropzone.classList.remove("dragover");
+        });
+      });
+      dropzone.addEventListener("drop", (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files.length > 0) {
+          handleFile(files[0]);
+        }
+      });
+    }
+
+    function handleFileSelect(e) {
+      if (e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+      }
+    }
+
+    function handleFile(file) {
+      selectedFileObject = file;
+      document.getElementById("selectedFileInfo").style.display = "block";
+      document.getElementById("selectedFileName").textContent = file.name;
+      document.getElementById("dropzoneText").textContent = `Selected: ${file.name}`;
+      showToast(`Attached: ${file.name}`, "info");
+    }
+
+    function confirmSubmitAssignment() {
+      const data = getLernoviqueData();
+      const asg = data.assignments.find(a => a.id === activeSubmitAsgId);
+      if (!asg) return;
+
+      const auth = getAuthSession();
+      const currentUserName = (auth && auth.user && auth.user.name) ? auth.user.name.replace(/\s+/g, "_") : "Student";
+      const fileName = selectedFileObject ? selectedFileObject.name : (asg.submittedFile || `${currentUserName}_Submission.pdf`);
+      asg.status = "Submitted";
+      asg.submittedDate = new Date().toISOString();
+      asg.submittedFile = fileName;
+
+      saveLernoviqueData(data);
+      closeModal("submissionModal");
+      showToast("Assignment submitted successfully to course faculty!", "success");
+      renderAssignmentsList();
+    }
+  </script>
+</body>
+</html>

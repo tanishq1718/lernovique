@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile & Settings | Lernovique - University Online Learning Platform</title>
+  <meta name="description" content="Manage institutional credentials, notification preferences, accessibility high contrast, and academic details.">
+  <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="site-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="../index.html" class="brand-badge">
+          <img src="../assets/logo.svg" alt="Lernovique" class="brand-logo-img">
+          <span>Lernovique</span>
+        </a>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li class="sidebar-section-title">Academic Main</li>
+        <li><a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+        <li><a href="courses.html" class="sidebar-link"><i class="fa-solid fa-graduation-cap"></i> Courses Catalog</a></li>
+        <li><a href="live.html" class="sidebar-link"><i class="fa-solid fa-video"></i> Live Lectures</a></li>
+        <li><a href="assignments.html" class="sidebar-link"><i class="fa-solid fa-list-check"></i> Assignments</a></li>
+        <li><a href="grades.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Grades & GPA</a></li>
+
+        <li class="sidebar-section-title">Communication</li>
+        <li><a href="messages.html" class="sidebar-link"><i class="fa-solid fa-comments"></i> Messages</a></li>
+        <li><a href="profile.html" class="sidebar-link active"><i class="fa-solid fa-user-gear"></i> Profile & Settings</a></li>
+
+        <li class="sidebar-section-title">Help</li>
+        <li><a href="faculty-dashboard.html" class="sidebar-link"><i class="fa-solid fa-chalkboard-user"></i> Switch to Faculty/Student</a></li>
+        <li><a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> Help & FAQ</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-badge" onclick="window.location.href='profile.html'">
+          <div class="user-avatar auth-user-avatar">US</div>
+          <div class="user-info-text">
+            <div class="user-name auth-user-name">User Account</div>
+            <div class="user-role-label auth-user-role">Student</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button class="mobile-toggle-btn" aria-label="Open Sidebar"><i class="fa-solid fa-bars"></i></button>
+          <div class="breadcrumb-nav">
+            <a href="dashboard.html">Dashboard</a>
+            <span class="breadcrumb-separator">/</span>
+            <span>Profile & Account</span>
+          </div>
+        </div>
+
+        <div class="navbar-right">
+          <button class="btn btn-icon-only btn-subtle theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-body">
+        <div class="page-header-row">
+          <div>
+            <h1 class="page-title">Institutional Profile & Preferences</h1>
+            <p class="page-subtitle">Manage university enrollment records, security credentials, and platform preferences.</p>
+          </div>
+          <button class="btn btn-danger btn-sm" onclick="handleLogout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out of Session
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+          <!-- Profile Badge Card -->
+          <div>
+            <div class="card" style="text-align: center; padding: 2.5rem 1.5rem; margin-bottom: 1.5rem;">
+              <div class="user-avatar auth-user-avatar" id="profileBigAvatar" style="width: 84px; height: 84px; margin: 0 auto 1.25rem; font-size: 2rem;">US</div>
+              <h2 style="font-size: 1.35rem; margin-bottom: 0.25rem;" class="auth-user-name" id="profileDisplayName">User Account</h2>
+              <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;"><span id="profileIdLabelText">Roll No</span>: <span id="profileRollNo" class="auth-user-roll">CS2026-001</span></div>
+              <span class="badge badge-success" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-check"></i> Enrolled Regular Full-Time</span>
+
+              <div style="text-align: left; background: var(--bg-subtle); padding: 1rem; border-radius: var(--radius-md); font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                <div><strong>University:</strong> <span id="profileUni">Apex Institute of Technology</span></div>
+                <div><strong>Department:</strong> <span id="profileDept" class="auth-user-dept">Computer Science & Eng.</span></div>
+                <div><strong>Role:</strong> <span id="profileRoleBadge" class="auth-user-role">Student</span></div>
+                <div><strong>Academic Track:</strong> <span id="profileSem">Sem 5 (Fall 2026)</span></div>
+                <div><strong>Current CGPA:</strong> <span id="profileGpa">8.84 / 10</span></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h4 style="margin-bottom: 0.75rem;"><i class="fa-solid fa-shield-halved" style="color: var(--primary);"></i> Security Status</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                Two-Factor Authentication (2FA) is enforced by Apex University Registrar.
+              </p>
+              <button class="btn btn-outline btn-sm" style="width: 100%;" onclick="showToast('2FA device registered with Google Authenticator', 'info')">
+                <i class="fa-solid fa-mobile-screen"></i> Manage 2FA Devices
+              </button>
+            </div>
+          </div>
+
+          <!-- Settings Forms -->
+          <div>
+            <div class="card" style="margin-bottom: 1.5rem;">
+              <h3 style="margin-bottom: 1.25rem;">Personal Information</h3>
+              <form onsubmit="saveProfileSettings(event)">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div class="form-group">
+                    <label class="form-label">First Name</label>
+                    <input type="text" id="profileFirstName" class="form-control" placeholder="First Name" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" id="profileLastName" class="form-control" placeholder="Last Name">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Institutional Email (.edu)</label>
+                  <input type="email" id="profileEmail" class="form-control" readonly style="background: var(--bg-subtle);">
+                  <span class="form-hint">Institutional email cannot be edited online. Contact Registrar to update.</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                  <div class="form-group">
+                    <label class="form-label" id="formIdLabel">Roll Number</label>
+                    <input type="text" id="profileRollField" class="form-control" placeholder="e.g. CS2026-084">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Department</label>
+                    <input type="text" id="profileDepartmentField" class="form-control" placeholder="e.g. Computer Science & Engineering">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Contact Phone</label>
+                  <input type="tel" id="profilePhone" class="form-control" placeholder="+91 98765 43210">
+                </div>
+
+                <div style="display: flex; justify-content: flex-end;">
+                  <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Profile Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Accessibility & UI Preferences -->
+            <div class="card">
+              <h3 style="margin-bottom: 1.25rem;">Accessibility & Interface Options</h3>
+              
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.92rem;">Dark Theme Display</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Switch between daylight and high-contrast night palette.</div>
+                  </div>
+                  <button class="btn btn-outline btn-sm theme-toggle-btn" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon"></i> Toggle Dark Mode
+                  </button>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.92rem;">Email Notification Digest</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Receive deadline warnings 24 hours prior to assignment close.</div>
+                  </div>
+                  <input type="checkbox" checked style="transform: scale(1.3); cursor: pointer;" onchange="showToast('Notification preference saved', 'info')">
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 1rem;">
+                  <div>
+                    <div style="font-weight: 600; font-size: 0.92rem;">High Contrast Font Weights (WCAG AAA)</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Enhance text contrast for readability under ambient lighting.</div>
+                  </div>
+                  <input type="checkbox" style="transform: scale(1.3); cursor: pointer;" onchange="showToast('High contrast mode preference active', 'info')">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      populateProfileFields();
+    });
+
+    function populateProfileFields() {
+      const u = getCurrentUser();
+      if (!u) return;
+
+      const nameParts = (u.name || "").trim().split(" ");
+      const firstName = u.firstName || nameParts[0] || "User";
+      const lastName = u.lastName || nameParts.slice(1).join(" ") || "";
+      const initials = u.avatar || (((firstName[0] || "") + (lastName[0] || "")).toUpperCase()) || "US";
+      const isFac = u.role === "faculty";
+      const idVal = isFac ? (u.employeeId || u.rollNo || "FAC-EMP-101") : (u.rollNo || "CS2026-001");
+
+      if (document.getElementById("profileDisplayName")) document.getElementById("profileDisplayName").textContent = u.name;
+      if (document.getElementById("profileBigAvatar")) document.getElementById("profileBigAvatar").textContent = initials;
+      if (document.getElementById("profileIdLabelText")) document.getElementById("profileIdLabelText").textContent = isFac ? "Employee ID" : "Roll No";
+      if (document.getElementById("formIdLabel")) document.getElementById("formIdLabel").textContent = isFac ? "Employee ID" : "Roll Number";
+      if (document.getElementById("profileRollNo")) document.getElementById("profileRollNo").textContent = idVal;
+      if (document.getElementById("profileDept")) document.getElementById("profileDept").textContent = u.department || "Computer Science & Engineering";
+      if (document.getElementById("profileRoleBadge")) document.getElementById("profileRoleBadge").textContent = isFac ? "Faculty" : "Student";
+      if (document.getElementById("profileUni") && u.university) document.getElementById("profileUni").textContent = u.university;
+      if (document.getElementById("profileSem")) document.getElementById("profileSem").textContent = isFac ? "Faculty Department Roster" : (u.semester || "Semester 5 (Fall 2026)");
+      if (document.getElementById("profileGpa")) document.getElementById("profileGpa").textContent = isFac ? "N/A (Faculty Account)" : (u.gpa ? `${u.gpa} / 10` : "8.50 / 10");
+
+      if (document.getElementById("profileFirstName")) document.getElementById("profileFirstName").value = firstName;
+      if (document.getElementById("profileLastName")) document.getElementById("profileLastName").value = lastName;
+      if (document.getElementById("profileEmail")) document.getElementById("profileEmail").value = u.email || "";
+      if (document.getElementById("profileRollField")) document.getElementById("profileRollField").value = idVal;
+      if (document.getElementById("profileDepartmentField")) document.getElementById("profileDepartmentField").value = u.department || "Computer Science & Engineering";
+      if (document.getElementById("profilePhone")) document.getElementById("profilePhone").value = u.phone || "+91 98765 43210";
+    }
+
+    function saveProfileSettings(e) {
+      e.preventDefault();
+      const fn = document.getElementById("profileFirstName").value.trim();
+      const ln = document.getElementById("profileLastName").value.trim();
+      const fullName = `${fn} ${ln}`.trim() || fn;
+      const phone = document.getElementById("profilePhone").value.trim();
+      const rollField = document.getElementById("profileRollField").value.trim();
+      const dept = document.getElementById("profileDepartmentField").value.trim();
+      
+      const currentUser = getCurrentUser();
+      const isFac = currentUser.role === "faculty";
+      const initials = ((fn[0] || "") + (ln[0] || (fn[1] || ""))).toUpperCase() || "US";
+
+      currentUser.firstName = fn;
+      currentUser.lastName = ln;
+      currentUser.name = fullName;
+      currentUser.avatar = initials;
+      currentUser.phone = phone;
+      currentUser.department = dept;
+      if (isFac) {
+        currentUser.employeeId = rollField;
+      } else {
+        currentUser.rollNo = rollField;
+      }
+
+      // Save to localStorage as lernovique_user
+      setCurrentUser(currentUser);
+      
+      // Update registered users registry if present
+      const data = getLernoviqueData();
+      if (data.registeredUsers) {
+        const idx = data.registeredUsers.findIndex(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+        if (idx !== -1) {
+          data.registeredUsers[idx] = currentUser;
+          saveLernoviqueData(data);
+        }
+      }
+
+      // Instantly update sidebar, headers, and UI
+      initializeAuthUI();
+      populateProfileFields();
+
+      showToast("Profile details updated successfully!", "success");
+    }
+  </script>
+</body>
+</html>
