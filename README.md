@@ -42,7 +42,7 @@ Lernovique/
     ├── login.html              # Dual-Role Authentication (Student/Faculty) & Registration
     ├── dashboard.html          # Student Central Dashboard (Enrolled courses, Deadlines, GPA, Calendar)
     ├── courses.html            # Courses Catalog with Search & Discipline Filtering
-    ├── course-detail.html      # 5-Tab Course Classroom (Overview, Video Player & Playlist, Materials, Discussions)
+    ├── course-detail.html      # 5-Tab Course Classroom (Overview, Video Lectures, Study Material, Assignments, Discussion Forum)
     ├── live.html               # Live Classroom Broadcast Stage & Archived Recordings
     ├── assignments.html        # Assignments Portal with Drag-and-Drop File Upload & Status Badges
     ├── grades.html             # Continuous Assessment Table & Pure HTML5 Canvas Score Chart
