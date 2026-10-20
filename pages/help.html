@@ -153,13 +153,23 @@
             </div>
           </div>
 
-          <div class="faq-item">
+          <div class="faq-item" id="privacy-policy">
             <div class="faq-question" onclick="toggleFaq(this)">
-              <span>How do I switch between Student and Faculty views?</span>
+              <span>Privacy Policy & Data Protection</span>
               <i class="fa-solid fa-chevron-down faq-icon"></i>
             </div>
             <div class="faq-answer">
-              You can easily test both roles! Use the "Switch Role" link located at the bottom of the left sidebar, or log out and use the 1-click demo buttons on the login page to sign in as either a student (<code style="background: var(--bg-subtle); padding: 0.2rem 0.4rem; border-radius: 4px;">student@edu.com</code>) or faculty (<code style="background: var(--bg-subtle); padding: 0.2rem 0.4rem; border-radius: 4px;">faculty@edu.com</code>).
+              Lernovique is dedicated to safeguarding student and faculty data privacy. All academic records, assignments, and grades are secured using end-to-end encryption protocols in compliance with institutional guidelines and educational data confidentiality regulations. We do not sell or share student learning information with third-party advertising services.
+            </div>
+          </div>
+
+          <div class="faq-item" id="academic-integrity">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>Academic Integrity & Honor Code</span>
+              <i class="fa-solid fa-chevron-down faq-icon"></i>
+            </div>
+            <div class="faq-answer">
+              All students enrolled on Lernovique agree to abide by the university Honor Code. Submitted assignments, project reports, and assessments must reflect original work. Automated plagiarism analysis and submission version timestamps are logged to preserve academic honesty, fairness, and professional integrity across all university departments.
             </div>
           </div>
         </div>
@@ -174,6 +184,18 @@
       const parent = el.parentElement;
       parent.classList.toggle("open");
     }
+
+    // Open target FAQ section if navigated via hash link (e.g. #privacy-policy)
+    document.addEventListener("DOMContentLoaded", () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target && target.classList.contains("faq-item")) {
+          target.classList.add("open");
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+    });
   </script>
 </body>
 </html>

@@ -37,13 +37,13 @@ const LERNOVIQUE_BASE_COURSES = [
       { id: "lec-6", title: "6. Color Psychology & Accessible Contrast", duration: "44 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4" },
       { id: "lec-7", title: "7. Building Scalable Component Libraries", duration: "62 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
       { id: "lec-8", title: "8. Interactive Micro-interactions & Transitions", duration: "49 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" },
-      { id: "lec-9", title: "9. Usability Testing & SUS Score Metrics", duration: "58 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4" },
+      { id: "lec-9", title: "9. Usability Testing & Evaluation Metrics", duration: "58 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4" },
       { id: "lec-10", title: "10. Accessibility (a11y) & Screen Reader Compatibility", duration: "45 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" },
       { id: "lec-11", title: "11. Developer Handoff & Redlines", duration: "40 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" },
       { id: "lec-12", title: "12. Final Design Critique & Portfolio Defense", duration: "65 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4" }
     ],
     discussions: [
-      { id: "disc-1", author: "Student Learner", role: "Student", avatar: "SL", date: "2 days ago", comment: "For the SUS score calculation in Assignment 3, should we normalize the odd/even numbered questions on the 0-4 scale before summing up?", upvotes: 7, replies: 2 },
+      { id: "disc-1", author: "Student Learner", role: "Student", avatar: "SL", date: "2 days ago", comment: "For the usability metrics calculation in Assignment 3, should we normalize the odd/even numbered questions on the 0-4 scale before summing up?", upvotes: 7, replies: 2 },
       { id: "disc-2", author: "Dr. Priya Kulkarni", role: "Instructor", avatar: "PK", date: "1 day ago", comment: "Yes, precisely! For odd items subtract 1 from the score (X - 1); for even items subtract the score from 5 (5 - X), sum all and multiply by 2.5.", upvotes: 14, replies: 0 }
     ]
   },

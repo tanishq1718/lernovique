@@ -157,6 +157,31 @@ function initializeAuthUI() {
     document.querySelectorAll(".auth-only").forEach(el => el.style.display = "");
     document.querySelectorAll(".guest-only").forEach(el => el.style.display = "none");
     
+    // Configure Dashboard nav button
+    const navDashboardBtn = document.getElementById("navDashboardBtn");
+    if (navDashboardBtn) {
+      const isInsidePages = window.location.pathname.includes("/pages/");
+      if (currentUser.role === "faculty") {
+        navDashboardBtn.href = isInsidePages ? "faculty-dashboard.html" : "pages/faculty-dashboard.html";
+      } else {
+        navDashboardBtn.href = isInsidePages ? "dashboard.html" : "pages/dashboard.html";
+      }
+    }
+
+    // Hero preview card update on landing page
+    const heroPreviewCard = document.querySelector(".hero-card-preview");
+    if (heroPreviewCard) {
+      const avatarEl = heroPreviewCard.querySelector(".user-avatar");
+      const nameEl = heroPreviewCard.querySelector("div > div[style*='font-weight: 700']");
+      if (avatarEl) {
+        const initials = currentUser.avatar || (currentUser.firstName ? currentUser.firstName[0] : "") + (currentUser.lastName ? currentUser.lastName[0] : "");
+        avatarEl.textContent = initials.toUpperCase() || "US";
+      }
+      if (nameEl) {
+        nameEl.textContent = currentUser.name || "Student User";
+      }
+    }
+
     // Role specific visibility
     if (currentUser.role === "faculty") {
       document.querySelectorAll(".role-student-only").forEach(el => el.style.display = "none");
@@ -168,6 +193,15 @@ function initializeAuthUI() {
   } else {
     document.querySelectorAll(".auth-only").forEach(el => el.style.display = "none");
     document.querySelectorAll(".guest-only").forEach(el => el.style.display = "");
+
+    // Hero preview card for guest / no logged in user
+    const heroPreviewCard = document.querySelector(".hero-card-preview");
+    if (heroPreviewCard) {
+      const avatarEl = heroPreviewCard.querySelector(".user-avatar");
+      const nameEl = heroPreviewCard.querySelector("div > div[style*='font-weight: 700']");
+      if (avatarEl) avatarEl.textContent = "DS";
+      if (nameEl) nameEl.textContent = "Demo Student";
+    }
   }
 }
 

@@ -231,8 +231,7 @@
       </div>
 
       <div class="auth-only" style="display: none; align-items: center; gap: 0.75rem;">
-        <a href="pages/dashboard.html" class="btn btn-primary btn-sm role-student-only">Student Portal</a>
-        <a href="pages/faculty-dashboard.html" class="btn btn-primary btn-sm role-faculty-only">Faculty Portal</a>
+        <a id="navDashboardBtn" href="pages/dashboard.html" class="btn btn-primary btn-sm">Dashboard</a>
         <button class="btn btn-outline btn-sm" onclick="handleLogout()">Sign Out</button>
       </div>
     </div>
@@ -281,9 +280,9 @@
       <div class="hero-card-preview">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
           <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <div class="user-avatar" style="width: 44px; height: 44px; font-size: 1rem;">LQ</div>
+            <div class="user-avatar" style="width: 44px; height: 44px; font-size: 1rem;">DS</div>
             <div>
-              <div style="font-weight: 700; font-size: 0.95rem;">Lernovique Student</div>
+              <div style="font-weight: 700; font-size: 0.95rem;">Demo Student</div>
               <div style="font-size: 0.78rem; color: var(--text-muted);">B.Tech CS & Design • Sem 5</div>
             </div>
           </div>
@@ -490,7 +489,7 @@
     <div class="container">
       <div class="section-header">
         <span class="badge badge-success" style="margin-bottom: 0.75rem;">Student & Faculty Voices</span>
-        <h2>Loved by 28,000+ Learners</h2>
+        <h2>Loved by Students and Faculty</h2>
         <p style="color: var(--text-muted);">What students and faculty say about Lernovique.</p>
       </div>
 
@@ -505,10 +504,10 @@
             every submission and lecture video is reachable within 2 clicks."
           </p>
           <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <div class="user-avatar" style="width: 40px; height: 40px;">KN</div>
+            <div class="user-avatar" style="width: 40px; height: 40px;">ST</div>
             <div>
-              <div style="font-weight: 700; font-size: 0.9rem;">Kavya Nair</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">3rd Year CS Student</div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Student, B.Tech CS</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Apex Institute of Technology</div>
             </div>
           </div>
         </div>
@@ -524,10 +523,10 @@
           </p>
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <div class="user-avatar"
-              style="width: 40px; height: 40px; background: linear-gradient(135deg, #059669, #10B981);">PK</div>
+              style="width: 40px; height: 40px; background: linear-gradient(135deg, #059669, #10B981);">FC</div>
             <div>
-              <div style="font-weight: 700; font-size: 0.9rem;">Dr. Priya Kulkarni</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">Professor & Head of HCI</div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Faculty, Computer Science</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Department of Computing</div>
             </div>
           </div>
         </div>
@@ -542,10 +541,10 @@
           </p>
           <div style="display: flex; align-items: center; gap: 0.75rem;">
             <div class="user-avatar"
-              style="width: 40px; height: 40px; background: linear-gradient(135deg, #F59E0B, #EA580C);">RR</div>
+              style="width: 40px; height: 40px; background: linear-gradient(135deg, #F59E0B, #EA580C);">FA</div>
             <div>
-              <div style="font-weight: 700; font-size: 0.9rem;">Prof. Rajesh Ramanathan</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">Associate Professor, Algorithms</div>
+              <div style="font-weight: 700; font-size: 0.9rem;">Faculty, Algorithms</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Department of Computer Science</div>
             </div>
           </div>
         </div>
@@ -607,7 +606,6 @@
             <li><a href="pages/profile.html" style="color: var(--text-muted);">My Academic Profile</a></li>
             <li><a href="pages/messages.html" style="color: var(--text-muted);">Academic Inbox</a></li>
             <li><a href="pages/help.html" style="color: var(--text-muted);">Help & Support</a></li>
-            <li><a href="pages/404.html" style="color: var(--text-muted);">Page Not Found (404)</a></li>
           </ul>
         </div>
 
@@ -624,7 +622,6 @@
           <div style="display: flex; gap: 0.75rem;">
             <a href="pages/help.html" class="badge badge-subtle"><i class="fa-solid fa-circle-question"></i> Help /
               FAQ</a>
-            <a href="pages/404.html" class="badge badge-subtle"><i class="fa-solid fa-bug"></i> 404 Page</a>
           </div>
         </div>
       </div>
@@ -633,8 +630,8 @@
         style="border-top: 1px solid var(--border-color); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted);">
         <div>&copy; 2026 Lernovique. University Learning Platform. All rights reserved.</div>
         <div style="display: flex; gap: 1.5rem;">
-          <a href="pages/help.html" style="color: var(--text-muted);">Privacy Policy</a>
-          <a href="pages/help.html" style="color: var(--text-muted);">Academic Integrity</a>
+          <a href="pages/help.html#privacy-policy" style="color: var(--text-muted);">Privacy Policy</a>
+          <a href="pages/help.html#academic-integrity" style="color: var(--text-muted);">Academic Integrity</a>
           <a href="pages/help.html" style="color: var(--text-muted);">Help Center</a>
         </div>
       </div>
