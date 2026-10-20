@@ -138,7 +138,7 @@
 
       <div class="modal-body">
         <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;" id="modalAsgMeta">
-          Course: DES-201 • Due Date: Oct 25, 2026
+          Course: CSE-201 • Due Date: Oct 25, 2026
         </div>
 
         <!-- Drag & Drop Zone -->
@@ -191,6 +191,7 @@
     let selectedFileObject = null;
 
     document.addEventListener("DOMContentLoaded", () => {
+      checkProtectedPage();
       renderAssignmentsList();
 
       // Check if URL has asg ID to open submit directly

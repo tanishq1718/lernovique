@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Courses Catalog | Lernovique - University Online Learning Platform</title>
-  <meta name="description" content="Explore and enroll in university accredited academic courses across Computer Science, Design Systems, Artificial Intelligence, and Cloud Computing.">
+  <meta name="description" content="Explore and enroll in university accredited academic courses across Computer Science & Engineering, Data Structures, Operating Systems, Networks, and AI.">
   <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="../css/style.css">
@@ -92,11 +92,12 @@
 
             <!-- Category Pills -->
             <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="categoryFilterContainer">
-              <button class="btn btn-sm btn-primary category-btn active" data-cat="all" onclick="setCategoryFilter('all', this)">All Disciplines</button>
-              <button class="btn btn-sm btn-subtle category-btn" data-cat="Design" onclick="setCategoryFilter('Design', this)">UI/UX Design</button>
-              <button class="btn btn-sm btn-subtle category-btn" data-cat="Computer Science" onclick="setCategoryFilter('Computer Science', this)">Computer Science</button>
+              <button class="btn btn-sm btn-primary category-btn active" data-cat="all" onclick="setCategoryFilter('all', this)">All</button>
+              <button class="btn btn-sm btn-subtle category-btn" data-cat="Core CS" onclick="setCategoryFilter('Core CS', this)">Core CS</button>
               <button class="btn btn-sm btn-subtle category-btn" data-cat="Programming" onclick="setCategoryFilter('Programming', this)">Programming</button>
-              <button class="btn btn-sm btn-subtle category-btn" data-cat="Artificial Intelligence" onclick="setCategoryFilter('Artificial Intelligence', this)">AI</button>
+              <button class="btn btn-sm btn-subtle category-btn" data-cat="AI & ML" onclick="setCategoryFilter('AI & ML', this)">AI & ML</button>
+              <button class="btn btn-sm btn-subtle category-btn" data-cat="Systems & Networks" onclick="setCategoryFilter('Systems & Networks', this)">Systems & Networks</button>
+              <button class="btn btn-sm btn-subtle category-btn" data-cat="Web & Software" onclick="setCategoryFilter('Web & Software', this)">Web & Software</button>
             </div>
           </div>
         </div>
@@ -123,6 +124,7 @@
     let activeCategory = "all";
 
     document.addEventListener("DOMContentLoaded", () => {
+      checkProtectedPage();
       renderCourses();
     });
 

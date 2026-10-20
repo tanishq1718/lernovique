@@ -187,13 +187,11 @@
             </div>
 
             <div class="form-group">
-              <label class="form-label" for="regDept">Department / Program</label>
-              <select id="regDept" class="form-control" required>
-                <option value="Computer Science & Engineering">Computer Science & Engineering</option>
-                <option value="Human-Centered Design">Human-Centered Design</option>
-                <option value="Information Technology">Information Technology</option>
-                <option value="Artificial Intelligence">Artificial Intelligence</option>
-              </select>
+              <label class="form-label">Department / Program</label>
+              <div style="background: var(--bg-subtle); border: 1px solid var(--border-color); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; color: var(--primary);">
+                <i class="fa-solid fa-code"></i> Department: Computer Science & Engineering
+              </div>
+              <input type="hidden" id="regDept" value="Computer Science & Engineering">
             </div>
 
             <div class="form-group">
@@ -324,7 +322,7 @@
         semester: isFac ? undefined : "Semester 5 (Fall 2026)",
         university: "Apex Institute of Technology, Pune",
         gpa: isFac ? undefined : 8.50,
-        enrolledCourses: ["des-201", "cse-301"]
+        enrolledCourses: ["cse-201", "cse-301"]
       };
 
       // Persist in mock data registeredUsers array

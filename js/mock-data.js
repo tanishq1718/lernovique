@@ -1,57 +1,58 @@
 /**
  * Lernovique - University Online Learning Platform
  * Mock Data Repository & Multi-User Isolated Storage Engine
+ * Exclusively for Computer Science & Engineering (CSE)
  */
 
 const LERNOVIQUE_BASE_COURSES = [
   {
-    id: "des-201",
-    code: "DES-201",
-    title: "UI/UX Design Systems & Usability Engineering",
-    category: "Design",
-    instructor: "Dr. Priya Kulkarni",
-    instructorId: "fac_1",
+    id: "cse-201",
+    code: "CSE-201",
+    title: "Data Structures & Algorithms",
+    category: "Core CS",
+    instructor: "Prof. Rajesh Ramanathan",
+    instructorId: "fac_2",
     credits: 4,
     level: "Intermediate",
     rating: 4.9,
-    enrolledCount: 184,
+    enrolledCount: 240,
     thumbnailGradient: "linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%)",
-    badge: "Bestseller",
+    badge: "Core",
     progress: 68,
     completedLectures: 8,
     totalLectures: 12,
-    description: "Master modern user experience research, heuristic evaluation, design tokens, and web accessibility standards (WCAG 2.1 AA).",
-    overview: "This course equips undergraduate students with industry-grade UX methodologies. From qualitative user interviews to designing high-fidelity interactive design systems, students complete an end-to-end design study.",
+    description: "Master foundational abstract data types: Linked Lists, Stacks, Queues, Binary Trees, Heaps, Hashing, and asymptotic runtime complexities.",
+    overview: "This foundational course equips undergraduate CS students with rigorous data organization principles, recursive tree traversals, and complexity analysis with Big-O notation.",
     materials: [
       { id: "mat-1", name: "Syllabus & Lecture Schedule - Autumn 2026.pdf", size: "1.4 MB", date: "Aug 12, 2026", type: "pdf" },
-      { id: "mat-2", name: "WCAG 2.1 AA Checklist & Heuristics Guide.pdf", size: "2.8 MB", date: "Aug 20, 2026", type: "pdf" },
-      { id: "mat-3", name: "Lernovique Design Tokens Reference.json", size: "38 KB", date: "Sep 05, 2026", type: "code" },
-      { id: "mat-4", name: "Usability Testing Script & Consent Form.docx", size: "520 KB", date: "Sep 18, 2026", type: "doc" }
+      { id: "mat-2", name: "Tree & Heap Algorithms Implementation Guide.pdf", size: "2.8 MB", date: "Aug 20, 2026", type: "pdf" },
+      { id: "mat-3", name: "Data Structures Benchmark Suite.cpp", size: "38 KB", date: "Sep 05, 2026", type: "code" },
+      { id: "mat-4", name: "Asymptotic Analysis Problem Set.docx", size: "520 KB", date: "Sep 18, 2026", type: "doc" }
     ],
     lectures: [
-      { id: "lec-1", title: "1. Introduction to User-Centered Design (UCD)", duration: "42 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
-      { id: "lec-2", title: "2. User Research, Personas & Empathy Maps", duration: "55 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" },
-      { id: "lec-3", title: "3. Information Architecture & Sitemap Design", duration: "38 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
-      { id: "lec-4", title: "4. Low-Fidelity Wireframing & Box Layouts", duration: "48 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
-      { id: "lec-5", title: "5. Visual Hierarchy, Typography & 8pt Grid", duration: "50 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" },
-      { id: "lec-6", title: "6. Color Psychology & Accessible Contrast", duration: "44 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4" },
-      { id: "lec-7", title: "7. Building Scalable Component Libraries", duration: "62 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
-      { id: "lec-8", title: "8. Interactive Micro-interactions & Transitions", duration: "49 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" },
-      { id: "lec-9", title: "9. Usability Testing & Evaluation Metrics", duration: "58 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4" },
-      { id: "lec-10", title: "10. Accessibility (a11y) & Screen Reader Compatibility", duration: "45 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" },
-      { id: "lec-11", title: "11. Developer Handoff & Redlines", duration: "40 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" },
-      { id: "lec-12", title: "12. Final Design Critique & Portfolio Defense", duration: "65 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4" }
+      { id: "lec-1", title: "1. Introduction to Asymptotic Complexity & Memory Models", duration: "42 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+      { id: "lec-2", title: "2. Singly & Doubly Linked Lists with Sentinel Nodes", duration: "55 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" },
+      { id: "lec-3", title: "3. Stacks, Queues & Monotonic Deque Architectures", duration: "38 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" },
+      { id: "lec-4", title: "4. Binary Search Trees & Balanced AVL Rotations", duration: "48 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" },
+      { id: "lec-5", title: "5. Red-Black Trees & B-Tree Indexing Principles", duration: "50 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" },
+      { id: "lec-6", title: "6. Binary Heaps, Priority Queues & HeapSort", duration: "44 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4" },
+      { id: "lec-7", title: "7. Hash Tables, Collision Resolution & Robin Hood Hashing", duration: "62 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
+      { id: "lec-8", title: "8. Graph Representations: Adjacency Lists vs Matrices", duration: "49 min", completed: true, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" },
+      { id: "lec-9", title: "9. Breadth-First Search & Depth-First Search Traversal", duration: "58 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackSeeTheWorld.mp4" },
+      { id: "lec-10", title: "10. Topological Sorting & Strongly Connected Components", duration: "45 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" },
+      { id: "lec-11", title: "11. Greedy Heuristics: Huffman Coding & Interval Scheduling", duration: "40 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" },
+      { id: "lec-12", title: "12. Divide and Conquer Master Theorem Benchmarks", duration: "65 min", completed: false, videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4" }
     ],
     discussions: [
-      { id: "disc-1", author: "Student Learner", role: "Student", avatar: "SL", date: "2 days ago", comment: "For the usability metrics calculation in Assignment 3, should we normalize the odd/even numbered questions on the 0-4 scale before summing up?", upvotes: 7, replies: 2 },
-      { id: "disc-2", author: "Dr. Priya Kulkarni", role: "Instructor", avatar: "PK", date: "1 day ago", comment: "Yes, precisely! For odd items subtract 1 from the score (X - 1); for even items subtract the score from 5 (5 - X), sum all and multiply by 2.5.", upvotes: 14, replies: 0 }
+      { id: "disc-1", author: "Student Learner", role: "Student", avatar: "SL", date: "2 days ago", comment: "For the AVL tree balance factor calculation in Assignment 3, should we rotate immediately upon insertion backtracking?", upvotes: 7, replies: 2 },
+      { id: "disc-2", author: "Prof. Rajesh Ramanathan", role: "Instructor", avatar: "RR", date: "1 day ago", comment: "Yes, precisely! Check balance factor height(left) - height(right) on each ancestor node during unwinding and perform single or double rotation accordingly.", upvotes: 14, replies: 0 }
     ]
   },
   {
     id: "cse-301",
     code: "CSE-301",
-    title: "Advanced Data Structures & Algorithms",
-    category: "Computer Science",
+    title: "Advanced Algorithms & Complexity",
+    category: "Core CS",
     instructor: "Prof. Rajesh Ramanathan",
     instructorId: "fac_2",
     credits: 4,
@@ -80,8 +81,8 @@ const LERNOVIQUE_BASE_COURSES = [
   {
     id: "cse-302",
     code: "CSE-302",
-    title: "Database Management Systems (DBMS) & SQL",
-    category: "Computer Science",
+    title: "Database Management Systems & SQL",
+    category: "Core CS",
     instructor: "Dr. Ananya Sen",
     instructorId: "fac_3",
     credits: 4,
@@ -133,8 +134,8 @@ const LERNOVIQUE_BASE_COURSES = [
   {
     id: "cse-305",
     code: "CSE-305",
-    title: "Computer Networks & Protocol Architectures",
-    category: "Computer Science",
+    title: "Computer Networks & Protocols",
+    category: "Systems & Networks",
     instructor: "Dr. Sneha Deshmukh",
     instructorId: "fac_5",
     credits: 3,
@@ -142,7 +143,7 @@ const LERNOVIQUE_BASE_COURSES = [
     rating: 4.6,
     enrolledCount: 160,
     thumbnailGradient: "linear-gradient(135deg, #4338CA 0%, #6D28D9 100%)",
-    badge: "New",
+    badge: "Core",
     progress: 0,
     completedLectures: 0,
     totalLectures: 10,
@@ -157,8 +158,8 @@ const LERNOVIQUE_BASE_COURSES = [
   {
     id: "cse-306",
     code: "CSE-306",
-    title: "Operating Systems & Concurrency Internals",
-    category: "Computer Science",
+    title: "Operating Systems & Concurrency",
+    category: "Systems & Networks",
     instructor: "Prof. Rajesh Ramanathan",
     instructorId: "fac_2",
     credits: 4,
@@ -177,32 +178,54 @@ const LERNOVIQUE_BASE_COURSES = [
     discussions: []
   },
   {
-    id: "des-301",
-    code: "DES-301",
-    title: "Interaction Design & Rapid Prototyping",
-    category: "Design",
+    id: "cse-202",
+    code: "CSE-202",
+    title: "Object-Oriented Programming with Java",
+    category: "Programming",
     instructor: "Dr. Priya Kulkarni",
     instructorId: "fac_1",
     credits: 3,
     level: "Intermediate",
     rating: 4.9,
-    enrolledCount: 140,
+    enrolledCount: 185,
     thumbnailGradient: "linear-gradient(135deg, #DB2777 0%, #9333EA 100%)",
-    badge: "Elective",
+    badge: "Core",
     progress: 0,
     completedLectures: 0,
     totalLectures: 10,
-    description: "Micro-interactions, state machines in UX, mobile-first gestures, paper prototyping, and user testing feedback loops.",
-    overview: "Create high-converting frictionless user experiences across mobile and web interfaces.",
+    description: "Encapsulation, inheritance, polymorphism, abstract classes, Java Generics, Multithreading, JVM internals, and clean design patterns.",
+    overview: "Comprehensive study of object-oriented architecture and enterprise Java application development.",
     materials: [],
     lectures: [],
     discussions: []
   },
   {
-    id: "ai-401",
-    code: "AI-401",
+    id: "cse-308",
+    code: "CSE-308",
+    title: "Web Technologies & Full-Stack Development",
+    category: "Web & Software",
+    instructor: "Dr. Priya Kulkarni",
+    instructorId: "fac_1",
+    credits: 4,
+    level: "Intermediate",
+    rating: 4.8,
+    enrolledCount: 210,
+    thumbnailGradient: "linear-gradient(135deg, #0284C7 0%, #2563EB 100%)",
+    badge: "Popular",
+    progress: 0,
+    completedLectures: 0,
+    totalLectures: 12,
+    description: "Modern JavaScript (ES6+), DOM manipulation, REST APIs, asynchronous client-server communication, Node.js backend services, and web security.",
+    overview: "Build scalable full-stack web applications with responsive user interfaces and robust server endpoints.",
+    materials: [],
+    lectures: [],
+    discussions: []
+  },
+  {
+    id: "cse-401",
+    code: "CSE-401",
     title: "Artificial Intelligence & Heuristic Search",
-    category: "Artificial Intelligence",
+    category: "AI & ML",
     instructor: "Dr. Sneha Deshmukh",
     instructorId: "fac_5",
     credits: 4,
@@ -215,7 +238,95 @@ const LERNOVIQUE_BASE_COURSES = [
     completedLectures: 0,
     totalLectures: 12,
     description: "State space representation, A* search, adversarial Minimax with Alpha-Beta pruning, constraint satisfaction, and Markov Decision Processes.",
-    overview: "Foundational AI paradigms and reinforcement learning foundations.",
+    overview: "Foundational AI paradigms, heuristic search optimizations, and probabilistic reasoning.",
+    materials: [],
+    lectures: [],
+    discussions: []
+  },
+  {
+    id: "cse-402",
+    code: "CSE-402",
+    title: "Machine Learning & Neural Networks",
+    category: "AI & ML",
+    instructor: "Dr. Sneha Deshmukh",
+    instructorId: "fac_5",
+    credits: 4,
+    level: "Advanced",
+    rating: 4.9,
+    enrolledCount: 230,
+    thumbnailGradient: "linear-gradient(135deg, #7C3AED 0%, #C026D3 100%)",
+    badge: "Elective",
+    progress: 0,
+    completedLectures: 0,
+    totalLectures: 14,
+    description: "Supervised and unsupervised learning, gradient descent, logistic regression, backpropagation, convolutional networks, and transformer fundamentals.",
+    overview: "Practical model training, evaluation metrics, overfitting mitigation, and PyTorch deep learning pipelines.",
+    materials: [],
+    lectures: [],
+    discussions: []
+  },
+  {
+    id: "cse-307",
+    code: "CSE-307",
+    title: "Software Engineering & Agile Methodologies",
+    category: "Web & Software",
+    instructor: "Prof. Vikram Malhotra",
+    instructorId: "fac_4",
+    credits: 3,
+    level: "Intermediate",
+    rating: 4.6,
+    enrolledCount: 170,
+    thumbnailGradient: "linear-gradient(135deg, #0D9488 0%, #10B981 100%)",
+    badge: "Core",
+    progress: 0,
+    completedLectures: 0,
+    totalLectures: 10,
+    description: "SDLC lifecycles, Agile/Scrum sprints, CI/CD pipelines, automated unit testing, architectural patterns, and code maintainability.",
+    overview: "Enterprise software development workflows, version control protocols, and software quality assurance.",
+    materials: [],
+    lectures: [],
+    discussions: []
+  },
+  {
+    id: "cse-309",
+    code: "CSE-309",
+    title: "Theory of Computation & Automata",
+    category: "Core CS",
+    instructor: "Prof. Rajesh Ramanathan",
+    instructorId: "fac_2",
+    credits: 4,
+    level: "Advanced",
+    rating: 4.7,
+    enrolledCount: 155,
+    thumbnailGradient: "linear-gradient(135deg, #475569 0%, #1E293B 100%)",
+    badge: "Core",
+    progress: 0,
+    completedLectures: 0,
+    totalLectures: 12,
+    description: "Deterministic & Nondeterministic Finite Automata, Regular Expressions, Context-Free Grammars, Pushdown Automata, and Turing Machines.",
+    overview: "Formal mathematical foundations of computation, language decidability, and the Chomsky hierarchy.",
+    materials: [],
+    lectures: [],
+    discussions: []
+  },
+  {
+    id: "cse-203",
+    code: "CSE-203",
+    title: "Computer Organization & Architecture",
+    category: "Systems & Networks",
+    instructor: "Dr. Ananya Sen",
+    instructorId: "fac_3",
+    credits: 4,
+    level: "Intermediate",
+    rating: 4.7,
+    enrolledCount: 180,
+    thumbnailGradient: "linear-gradient(135deg, #B45309 0%, #F59E0B 100%)",
+    badge: "Core",
+    progress: 0,
+    completedLectures: 0,
+    totalLectures: 12,
+    description: "Instruction set architecture (RISC/CISC), CPU pipelining, hazards, cache memory hierarchy, virtual memory, and I/O bus systems.",
+    overview: "Hardware-software boundary, assembly language, datapath control units, and microarchitectural performance.",
     materials: [],
     lectures: [],
     discussions: []
@@ -227,11 +338,11 @@ function createDefaultAssignmentsForUser(user) {
   return [
     {
       id: "asg-1",
-      courseId: "des-201",
-      courseTitle: "UI/UX Design Systems & Usability Engineering",
-      courseCode: "DES-201",
-      title: "Assignment 3: Interactive High-Fidelity Prototype & Heuristic Evaluation",
-      description: "Submit a complete interactive prototype along with a 6-page Nielsen Norman heuristic evaluation report on your university portal redesign.",
+      courseId: "cse-201",
+      courseTitle: "Data Structures & Algorithms",
+      courseCode: "CSE-201",
+      title: "Assignment 3: Balanced AVL Trees & Priority Heap Benchmarks",
+      description: "Implement a self-balancing AVL search tree and benchmark priority queue operations against standard binary min-heaps.",
       dueDate: "2026-10-25T23:59:00",
       maxMarks: 100,
       status: "Pending",
@@ -242,38 +353,38 @@ function createDefaultAssignmentsForUser(user) {
     },
     {
       id: "asg-2",
-      courseId: "des-201",
-      courseTitle: "UI/UX Design Systems & Usability Engineering",
-      courseCode: "DES-201",
-      title: "Assignment 2: User Persona & Information Architecture Sitemap",
-      description: "Develop 2 comprehensive user personas (Student & Faculty) and structure a 3-tier hierarchical navigation flow.",
+      courseId: "cse-201",
+      courseTitle: "Data Structures & Algorithms",
+      courseCode: "CSE-201",
+      title: "Assignment 2: Graph Cycle Detection & Topological Sort",
+      description: "Construct directed graph representations using adjacency lists and detect dependency deadlocks using Kahn algorithm.",
       dueDate: "2026-10-10T23:59:00",
       maxMarks: 100,
       status: "Graded",
       submittedDate: "2026-10-09T18:30:00",
-      submittedFile: `${firstName}_Persona_IA_CaseStudy.pdf`,
+      submittedFile: `${firstName}_Graph_TopologicalSort.zip`,
       grade: 94,
-      feedback: "Exceptional depth in student pain point mapping. Clear visual hierarchy in the sitemap diagram."
+      feedback: "Exceptional cycle detection logic. Clear asymptotic analysis."
     },
     {
       id: "asg-3",
-      courseId: "des-201",
-      courseTitle: "UI/UX Design Systems & Usability Engineering",
-      courseCode: "DES-201",
-      title: "Assignment 1: Low-Fidelity Wireframing & Box Layouts",
-      description: "Construct grayscale box-and-label wireframes for 6 core university portal screens without visual ornamentation.",
+      courseId: "cse-201",
+      courseTitle: "Data Structures & Algorithms",
+      courseCode: "CSE-201",
+      title: "Assignment 1: Linked List Inversion & Monotonic Deque",
+      description: "Implement in-place singly linked list reversal and sliding window maximum with O(N) monotonic double-ended queue.",
       dueDate: "2026-09-22T23:59:00",
       maxMarks: 100,
       status: "Graded",
       submittedDate: "2026-09-21T14:15:00",
-      submittedFile: `DES201_LoFi_Wireframes_${firstName}.pdf`,
+      submittedFile: `CSE201_LinkedList_${firstName}.cpp`,
       grade: 96,
-      feedback: "Accurate adherence to wireframe constraints. Good clear spacing and CTA placement."
+      feedback: "Accurate memory pointer manipulation without memory leaks."
     },
     {
       id: "asg-4",
       courseId: "cse-301",
-      courseTitle: "Advanced Data Structures & Algorithms",
+      courseTitle: "Advanced Algorithms & Complexity",
       courseCode: "CSE-301",
       title: "Assignment 4: Dynamic Programming & Bellman-Ford Optimization",
       description: "Implement 0/1 Knapsack variations and Bellman-Ford negative cycle detection with O(V*E) complexity benchmarks.",
@@ -288,7 +399,7 @@ function createDefaultAssignmentsForUser(user) {
     {
       id: "asg-5",
       courseId: "cse-301",
-      courseTitle: "Advanced Data Structures & Algorithms",
+      courseTitle: "Advanced Algorithms & Complexity",
       courseCode: "CSE-301",
       title: "Assignment 3: Disjoint Set Union & Minimum Spanning Trees",
       description: "Benchmark Kruskal vs Prim on sparse vs dense graphs with 100,000 vertices using Union-By-Rank and Path Compression.",
@@ -303,7 +414,7 @@ function createDefaultAssignmentsForUser(user) {
     {
       id: "asg-6",
       courseId: "cse-302",
-      courseTitle: "Database Management Systems (DBMS) & SQL",
+      courseTitle: "Database Management Systems & SQL",
       courseCode: "CSE-302",
       title: "Assignment 3: Complex SQL Analytical Queries & Window Functions",
       description: "Write queries using RANK(), DENSE_RANK(), CTEs and partitioning for university enrollment metrics.",
@@ -318,7 +429,7 @@ function createDefaultAssignmentsForUser(user) {
     {
       id: "asg-7",
       courseId: "cse-302",
-      courseTitle: "Database Management Systems (DBMS) & SQL",
+      courseTitle: "Database Management Systems & SQL",
       courseCode: "CSE-302",
       title: "Assignment 2: Schema Normalization & BCNF Decomposition",
       description: "Normalize university clinic records from unnormalized form to Boyce-Codd Normal Form with dependency preservation proofs.",
@@ -363,7 +474,7 @@ function createDefaultAssignmentsForUser(user) {
     {
       id: "asg-10",
       courseId: "cse-301",
-      courseTitle: "Advanced Data Structures & Algorithms",
+      courseTitle: "Advanced Algorithms & Complexity",
       courseCode: "CSE-301",
       title: "Assignment 2: Trie Implementation with Autocomplete Search",
       description: "Implement a memory-efficient prefix Trie supporting insert, search, prefix count, and Levenshtein fuzzy distance matching.",
@@ -385,21 +496,21 @@ function createDefaultMessagesForUser(user) {
       id: "msg-thread-1",
       facultyId: "fac_1",
       facultyName: "Dr. Priya Kulkarni",
-      facultyRole: "Professor & HOD, HCI",
+      facultyRole: "Professor, Dept. of CSE",
       avatar: "PK",
       unread: false,
       chat: [
-        { sender: "faculty", text: `Good afternoon ${firstName}. I reviewed your wireframe submission for DES-201. Your visual hierarchy is commendable.`, time: "Oct 18, 2:15 PM" },
-        { sender: "student", text: "Thank you so much Professor Kulkarni! I spent extra time refining the 8px grid alignments.", time: "Oct 18, 2:20 PM" },
-        { sender: "faculty", text: "Remember to ensure color contrast ratios reach 4.5:1 for body copy when moving to the high-fidelity phase.", time: "Oct 18, 2:24 PM" },
-        { sender: "student", text: "Noted ma'am! I am running all hex codes through WebAIM contrast checker before final handoff.", time: "Oct 18, 2:30 PM" }
+        { sender: "faculty", text: `Good afternoon ${firstName}. I reviewed your lab implementation for CSE-201. Your balanced tree logic is commendable.`, time: "Oct 18, 2:15 PM" },
+        { sender: "student", text: "Thank you so much Professor Kulkarni! I spent extra time refining the AVL rotation edge cases.", time: "Oct 18, 2:20 PM" },
+        { sender: "faculty", text: "Remember to ensure time complexity remains strictly O(log N) for height adjustments during deletions.", time: "Oct 18, 2:24 PM" },
+        { sender: "student", text: "Noted ma'am! I have verified all benchmark cases against randomized test inputs.", time: "Oct 18, 2:30 PM" }
       ]
     },
     {
       id: "msg-thread-2",
       facultyId: "fac_2",
       facultyName: "Prof. Rajesh Ramanathan",
-      facultyRole: "Associate Professor, Algorithms",
+      facultyRole: "Professor & Head, Dept. of CSE",
       avatar: "RR",
       unread: true,
       chat: [
@@ -412,7 +523,7 @@ function createDefaultMessagesForUser(user) {
       id: "msg-thread-3",
       facultyId: "fac_4",
       facultyName: "Prof. Vikram Malhotra",
-      facultyRole: "Visiting Lead Architect, Cloud",
+      facultyRole: "Visiting Lead Architect, Cloud Systems",
       avatar: "VM",
       unread: false,
       chat: [
@@ -438,7 +549,7 @@ const LERNOVIQUE_DEFAULT_DATA = {
     semester: "Semester 5 (Fall 2026)",
     university: "Apex Institute of Technology, Pune",
     gpa: 8.84,
-    enrolledCourses: ["cse-301", "cse-302", "cse-304", "des-201"]
+    enrolledCourses: ["cse-201", "cse-301", "cse-302", "cse-304"]
   },
 
   facultyUser: {
@@ -448,20 +559,20 @@ const LERNOVIQUE_DEFAULT_DATA = {
     lastName: "Kulkarni",
     email: "faculty@edu.com",
     role: "faculty",
-    designation: "Professor & Head of Department",
+    designation: "Professor, Dept. of CSE",
     employeeId: "FAC-EMP-104",
     phone: "+91 94220 18834",
     avatar: "PK",
-    department: "Human-Centered Design & Computing",
+    department: "Computer Science & Engineering",
     university: "Apex Institute of Technology, Pune",
-    coursesTaught: ["des-201", "des-301"]
+    coursesTaught: ["cse-201", "cse-202"]
   },
 
   faculties: [
     {
       id: "fac_1",
       name: "Dr. Priya Kulkarni",
-      title: "Professor & HOD, HCI",
+      title: "Professor, Dept. of CSE",
       email: "priya.kulkarni@edu.com",
       avatar: "PK",
       rating: 4.9,
@@ -471,7 +582,7 @@ const LERNOVIQUE_DEFAULT_DATA = {
     {
       id: "fac_2",
       name: "Prof. Rajesh Ramanathan",
-      title: "Associate Professor, Algorithms",
+      title: "Professor & Head, Dept. of CSE",
       email: "rajesh.r@edu.com",
       avatar: "RR",
       rating: 4.8,
@@ -481,7 +592,7 @@ const LERNOVIQUE_DEFAULT_DATA = {
     {
       id: "fac_3",
       name: "Dr. Ananya Sen",
-      title: "Assistant Professor, Database Systems",
+      title: "Associate Professor, Database Systems (CSE)",
       email: "ananya.sen@edu.com",
       avatar: "AS",
       rating: 4.7,
@@ -491,7 +602,7 @@ const LERNOVIQUE_DEFAULT_DATA = {
     {
       id: "fac_4",
       name: "Prof. Vikram Malhotra",
-      title: "Visiting Lead Architect, Cloud & Python",
+      title: "Visiting Lead Architect, Cloud Systems (CSE)",
       email: "vikram.m@edu.com",
       avatar: "VM",
       rating: 4.9,
@@ -501,7 +612,7 @@ const LERNOVIQUE_DEFAULT_DATA = {
     {
       id: "fac_5",
       name: "Dr. Sneha Deshmukh",
-      title: "Professor, AI & Computer Networks",
+      title: "Professor, AI & Computer Networks (CSE)",
       email: "sneha.d@edu.com",
       avatar: "SD",
       rating: 4.6,
@@ -514,10 +625,10 @@ const LERNOVIQUE_DEFAULT_DATA = {
 
   grades: [
     {
-      subjectCode: "DES-201",
-      subjectName: "UI/UX Design Systems & Usability",
+      subjectCode: "CSE-201",
+      subjectName: "Data Structures & Algorithms",
       credits: 4,
-      instructor: "Dr. Priya Kulkarni",
+      instructor: "Prof. Rajesh Ramanathan",
       midTerm: 48,
       assignments: 95,
       labPracticals: 49,
@@ -528,7 +639,7 @@ const LERNOVIQUE_DEFAULT_DATA = {
     },
     {
       subjectCode: "CSE-301",
-      subjectName: "Advanced Data Structures & Algorithms",
+      subjectName: "Advanced Algorithms & Complexity",
       credits: 4,
       instructor: "Prof. Rajesh Ramanathan",
       midTerm: 44,
@@ -566,10 +677,10 @@ const LERNOVIQUE_DEFAULT_DATA = {
       status: "Completed"
     },
     {
-      subjectCode: "ENG-201",
-      subjectName: "Professional Communication & Ethics",
-      credits: 2,
-      instructor: "Prof. Meera Joshi",
+      subjectCode: "CSE-305",
+      subjectName: "Computer Networks & Protocols",
+      credits: 3,
+      instructor: "Dr. Sneha Deshmukh",
       midTerm: 44,
       assignments: 90,
       labPracticals: 45,
@@ -583,22 +694,22 @@ const LERNOVIQUE_DEFAULT_DATA = {
   liveLectures: [
     {
       id: "live-1",
-      courseId: "des-201",
-      courseCode: "DES-201",
-      courseTitle: "UI/UX Design Systems",
-      title: "Live Critique: Nielsen Norman Usability Heuristics & Audit Walkthrough",
+      courseId: "cse-201",
+      courseCode: "CSE-201",
+      courseTitle: "Data Structures & Algorithms",
+      title: "Live Problem Solving: Balanced Binary Search Trees & AVL Rotations",
       instructor: "Dr. Priya Kulkarni",
       date: "Today, 4:00 PM - 5:30 PM",
       timestamp: "2026-10-19T16:00:00",
       status: "upcoming",
       platform: "Lernovique Live Classroom",
-      meetingId: "LRN-DES-8492",
+      meetingId: "LRN-CSE-2010",
       attendeesCount: 78
     },
     {
       id: "live-2",
       courseId: "cse-301",
-      courseTitle: "Data Structures & Algorithms",
+      courseTitle: "Advanced Algorithms & Complexity",
       courseCode: "CSE-301",
       title: "Interactive Doubt Clearing: Dynamic Programming on Trees",
       instructor: "Prof. Rajesh Ramanathan",
@@ -625,17 +736,17 @@ const LERNOVIQUE_DEFAULT_DATA = {
     },
     {
       id: "live-4",
-      courseId: "des-201",
-      courseTitle: "UI/UX Design Systems",
-      courseCode: "DES-201",
-      title: "Workshop: Building Design Tokens in Figma and CSS Variables",
+      courseId: "cse-201",
+      courseTitle: "Data Structures & Algorithms",
+      courseCode: "CSE-201",
+      title: "Workshop: Building High-Performance Hash Tables & Benchmarking",
       instructor: "Dr. Priya Kulkarni",
       date: "Oct 15, 2026, 4:00 PM",
       timestamp: "2026-10-15T16:00:00",
       status: "past",
       recordingUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       platform: "Lernovique Live Classroom",
-      meetingId: "LRN-DES-8400",
+      meetingId: "LRN-CSE-2011",
       attendeesCount: 142
     },
     {
@@ -659,18 +770,18 @@ const LERNOVIQUE_DEFAULT_DATA = {
     {
       id: "ann-1",
       title: "Mid-Semester Examination Schedule Autumn 2026 Released",
-      author: "Office of the Dean of Academic Affairs",
+      author: "Department of Computer Science & Engineering",
       date: "Oct 18, 2026",
       urgent: true,
       content: "Mid-semester exams will commence on November 10, 2026. Hall tickets will be downloadable via the Lernovique portal from November 1st. Please review conflict schedules by this Friday."
     },
     {
       id: "ann-2",
-      title: "Guest Masterclass: 'Design at Scale at Google' by VP of Product Design",
-      author: "Department of HCI & Computing",
+      title: "CSE Technical Colloquium: 'Distributed Systems & Microservices Architecture'",
+      author: "Dept. of Computer Science & Engineering",
       date: "Oct 17, 2026",
       urgent: false,
-      content: "Join us in the Main Auditorium or on Lernovique Live this Thursday at 5:00 PM IST for an exclusive session on Building Design Systems for 1 Billion Users."
+      content: "Join us in the CSE Seminar Hall or on Lernovique Live this Thursday at 5:00 PM IST for an exclusive session on Building Distributed Event-Driven Systems."
     },
     {
       id: "ann-3",
@@ -694,58 +805,56 @@ const LERNOVIQUE_DEFAULT_DATA = {
     {
       id: "sub-101",
       assignmentId: "asg-1",
-      courseCode: "DES-201",
-      assignmentTitle: "Assignment 3: Interactive High-Fidelity Prototype",
+      courseCode: "CSE-201",
+      assignmentTitle: "Assignment 3: Balanced AVL Trees & Priority Heap Benchmarks",
       studentName: "Kavya Nair",
       rollNo: "CS2023-085",
       submittedDate: "2026-10-18 14:30",
-      file: "Kavya_DES201_Prototype_Report.pdf",
+      file: "Kavya_CSE201_AVL_Benchmarks.zip",
       grade: null,
       status: "Needs Grading"
     },
     {
       id: "sub-102",
       assignmentId: "asg-1",
-      courseCode: "DES-201",
-      assignmentTitle: "Assignment 3: Interactive High-Fidelity Prototype",
+      courseCode: "CSE-201",
+      assignmentTitle: "Assignment 3: Balanced AVL Trees & Priority Heap Benchmarks",
       studentName: "Sneha Patel",
       rollNo: "CS2023-087",
       submittedDate: "2026-10-18 19:20",
-      file: "SnehaPatel_HiFi_DesignCaseStudy.pdf",
+      file: "SnehaPatel_Tree_Benchmarking.pdf",
       grade: null,
       status: "Needs Grading"
     },
     {
       id: "sub-103",
       assignmentId: "asg-1",
-      courseCode: "DES-201",
-      assignmentTitle: "Assignment 3: Interactive High-Fidelity Prototype",
+      courseCode: "CSE-201",
+      assignmentTitle: "Assignment 3: Balanced AVL Trees & Priority Heap Benchmarks",
       studentName: "Rohan Varma",
       rollNo: "CS2023-086",
       submittedDate: "2026-10-17 11:15",
-      file: "Rohan_Varma_DES201_Sub.pdf",
+      file: "Rohan_Varma_CSE201_Sub.cpp",
       grade: 89,
       status: "Graded"
     }
   ]
 };
 
-// Initialize localStorage if not present
+// Storage Version Key for Part A and Part B migration
+const STORAGE_DATA_VERSION_KEY = "lernovique_data_v3_cse";
+
+// Initialize localStorage if not present or if migrated
 function initializeLernoviqueStorage() {
-  if (!localStorage.getItem("lernovique_initialized")) {
+  if (!localStorage.getItem(STORAGE_DATA_VERSION_KEY)) {
+    // Overwrite default data with fresh CSE structure
     localStorage.setItem("lernovique_data", JSON.stringify(LERNOVIQUE_DEFAULT_DATA));
+    localStorage.setItem(STORAGE_DATA_VERSION_KEY, "true");
     localStorage.setItem("lernovique_initialized", "true");
-    
-    // Default active user is the demo student initially
-    if (!localStorage.getItem("lernovique_user")) {
-      localStorage.setItem("lernovique_user", JSON.stringify(LERNOVIQUE_DEFAULT_DATA.currentUser));
-    }
-    if (!localStorage.getItem("lernovique_auth")) {
-      localStorage.setItem("lernovique_auth", JSON.stringify({
-        isLoggedIn: true,
-        user: LERNOVIQUE_DEFAULT_DATA.currentUser
-      }));
-    }
+    // Ensure clean guest session migration
+    localStorage.setItem("lernovique_session_v2", "true");
+    localStorage.removeItem("lernovique_user");
+    localStorage.setItem("lernovique_auth", JSON.stringify({ isLoggedIn: false, user: null }));
   }
 }
 
@@ -804,23 +913,36 @@ function saveLernoviqueData(data) {
   }
 }
 
-// Helper for Auth session & Current User
+// Helper for Auth session & Current User - STRICT GUEST RULE: return null when not logged in
 function getCurrentUser() {
   initializeLernoviqueStorage();
   try {
-    const rawUser = localStorage.getItem("lernovique_user");
-    if (rawUser) {
-      return JSON.parse(rawUser);
-    }
     const rawAuth = localStorage.getItem("lernovique_auth");
     if (rawAuth) {
-      const parsed = JSON.parse(rawAuth);
-      if (parsed && parsed.user) return parsed.user;
+      const auth = JSON.parse(rawAuth);
+      if (!auth || !auth.isLoggedIn) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+
+    const rawUser = localStorage.getItem("lernovique_user");
+    if (rawUser) {
+      const u = JSON.parse(rawUser);
+      if (u && u.name) {
+        if (!u.firstName) {
+          const parts = (u.name || "").trim().split(" ");
+          u.firstName = parts[0] || "User";
+          u.lastName = parts.slice(1).join(" ") || "";
+        }
+        return u;
+      }
     }
   } catch (e) {
     console.error("Error getting current user", e);
   }
-  return LERNOVIQUE_DEFAULT_DATA.currentUser;
+  return null;
 }
 
 function setCurrentUser(user) {
@@ -839,10 +961,11 @@ function getAuthSession() {
     const raw = localStorage.getItem("lernovique_auth");
     if (!raw) return { isLoggedIn: false, user: null };
     const auth = JSON.parse(raw);
-    const user = getCurrentUser();
-    if (auth && auth.isLoggedIn) {
-      auth.user = user;
+    if (!auth || !auth.isLoggedIn) {
+      return { isLoggedIn: false, user: null };
     }
+    const user = getCurrentUser();
+    auth.user = user;
     return auth;
   } catch (e) {
     return { isLoggedIn: false, user: null };

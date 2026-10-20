@@ -79,12 +79,22 @@ function showToast(message, type = "success") {
   }, 4000);
 }
 
-// Helper for Auth session & Current User
+// Helper for Auth session & Current User - STRICT GUEST RULE: null if not logged in
 function getCurrentUser() {
   if (typeof initializeLernoviqueStorage === "function") {
     initializeLernoviqueStorage();
   }
   try {
+    const rawAuth = localStorage.getItem("lernovique_auth");
+    if (rawAuth) {
+      const auth = JSON.parse(rawAuth);
+      if (!auth || !auth.isLoggedIn) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+
     const rawUser = localStorage.getItem("lernovique_user");
     if (rawUser) {
       const u = JSON.parse(rawUser);
@@ -97,32 +107,10 @@ function getCurrentUser() {
         return u;
       }
     }
-    const rawAuth = localStorage.getItem("lernovique_auth");
-    if (rawAuth) {
-      const parsed = JSON.parse(rawAuth);
-      if (parsed && parsed.user) return parsed.user;
-    }
   } catch (e) {
     console.error("Error getting current user", e);
   }
-  return (typeof LERNOVIQUE_DEFAULT_DATA !== "undefined" && LERNOVIQUE_DEFAULT_DATA.currentUser) 
-    ? LERNOVIQUE_DEFAULT_DATA.currentUser 
-    : {
-        id: "usr_student",
-        name: "Aarav Sharma",
-        firstName: "Aarav",
-        lastName: "Sharma",
-        email: "student@edu.com",
-        role: "student",
-        rollNo: "CS2023-084",
-        department: "Computer Science & Engineering",
-        phone: "+91 98230 44102",
-        avatar: "AS",
-        semester: "Semester 5 (Fall 2026)",
-        university: "Apex Institute of Technology, Pune",
-        gpa: 8.84,
-        enrolledCourses: ["des-201", "cse-301", "cse-302", "aim-401"]
-      };
+  return null;
 }
 
 // ==========================================================================
@@ -203,6 +191,33 @@ function initializeAuthUI() {
       if (nameEl) nameEl.textContent = "Demo Student";
     }
   }
+
+  // Update Landing Page CTAs dynamically (for guest vs logged in)
+  updateLandingCTAs(auth, currentUser);
+}
+
+function updateLandingCTAs(auth, currentUser) {
+  const isLoggedIn = auth && auth.isLoggedIn && currentUser;
+  const isInsidePages = window.location.pathname.includes("/pages/");
+  const loginPath = isInsidePages ? "login.html" : "pages/login.html";
+  const studentPath = isInsidePages ? "dashboard.html" : "pages/dashboard.html";
+  const facultyPath = isInsidePages ? "faculty-dashboard.html" : "pages/faculty-dashboard.html";
+
+  // Elements on landing page
+  document.querySelectorAll("[data-landing-cta]").forEach(btn => {
+    const target = btn.getAttribute("data-landing-cta");
+    if (!isLoggedIn) {
+      btn.href = loginPath;
+    } else {
+      if (target === "faculty") {
+        btn.href = facultyPath;
+      } else if (target === "student") {
+        btn.href = studentPath;
+      } else {
+        btn.href = currentUser.role === "faculty" ? facultyPath : studentPath;
+      }
+    }
+  });
 }
 
 function handleLogin(email, password, role) {
@@ -244,7 +259,7 @@ function handleLogin(email, password, role) {
       semester: isFac ? undefined : "Semester 5 (Fall 2026)",
       university: "Apex Institute of Technology, Pune",
       gpa: isFac ? undefined : 8.50,
-      enrolledCourses: ["des-201", "cse-301"]
+      enrolledCourses: ["cse-201", "cse-301"]
     };
 
     // Store new user in registeredUsers
@@ -280,11 +295,10 @@ function handleLogout() {
 // Protect pages from unauthenticated access
 function checkProtectedPage() {
   const auth = getAuthSession();
-  if (!auth || !auth.isLoggedIn) {
+  if (!auth || !auth.isLoggedIn || !getCurrentUser()) {
     showToast("Please log in to access this portal page", "warning");
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 800);
+    const isInsidePages = window.location.pathname.includes("/pages/");
+    window.location.href = isInsidePages ? "login.html" : "pages/login.html";
   }
 }
 

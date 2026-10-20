@@ -70,7 +70,7 @@
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div>
               <span class="badge" style="background: rgba(255,255,255,0.2); color: #FFF; margin-bottom: 0.5rem;" id="facultyDeptBadge">
-                Department of Human-Centered Design & Computing
+                Department of Computer Science & Engineering
               </span>
               <h1 style="color: #FFF; font-size: 1.85rem; margin-bottom: 0.35rem;" id="facultyWelcomeTitle">
                 Faculty Workspace: <span class="auth-user-name">Faculty Member</span>
@@ -95,12 +95,12 @@
           <div class="card" style="border-left: 4px solid #10B981;">
             <div style="font-size: 0.8rem; color: var(--text-muted);">Active Courses Taught</div>
             <div style="font-size: 1.8rem; font-weight: 800; color: #10B981;">2 Courses</div>
-            <div style="font-size: 0.78rem; color: var(--text-muted);">DES-201 & DES-301</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">CSE-201 & CSE-202</div>
           </div>
 
           <div class="card" style="border-left: 4px solid var(--primary);">
             <div style="font-size: 0.8rem; color: var(--text-muted);">Total Enrolled Students</div>
-            <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">324 Students</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">425 Students</div>
             <div style="font-size: 0.78rem; color: var(--success); font-weight: 600;"><i class="fa-solid fa-check"></i> 94% Avg Attendance</div>
           </div>
 
@@ -113,7 +113,7 @@
           <div class="card" style="border-left: 4px solid var(--secondary);">
             <div style="font-size: 0.8rem; color: var(--text-muted);">Scheduled Live Broadcast</div>
             <div style="font-size: 1.3rem; font-weight: 800; color: var(--secondary); margin-top: 0.35rem;">Today, 4:00 PM</div>
-            <div style="font-size: 0.78rem; color: var(--text-muted);">DES-201 Heuristics Audit</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">CSE-201 AVL Trees</div>
           </div>
         </div>
 
@@ -154,26 +154,26 @@
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
             <div style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; background: var(--bg-subtle);">
               <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span class="badge badge-primary">DES-201</span>
+                <span class="badge badge-primary">CSE-201</span>
                 <span style="font-size: 0.8rem; font-weight: 700; color: #F59E0B;"><i class="fa-solid fa-star"></i> 4.9</span>
               </div>
-              <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem;">UI/UX Design Systems & Usability</h3>
-              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">184 Enrolled • 12 Lectures • 4 Assignments</p>
+              <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem;">Data Structures & Algorithms</h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">240 Enrolled • 12 Lectures • 4 Assignments</p>
               <div style="display: flex; gap: 0.5rem;">
-                <a href="course-detail.html?id=des-201" class="btn btn-primary btn-sm" style="flex:1;">Classroom</a>
+                <a href="course-detail.html?id=cse-201" class="btn btn-primary btn-sm" style="flex:1;">Classroom</a>
                 <a href="live.html?join=live-1" class="btn btn-secondary btn-sm"><i class="fa-solid fa-video"></i> Broadcast</a>
               </div>
             </div>
 
             <div style="border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; background: var(--bg-subtle);">
               <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                <span class="badge badge-secondary">DES-301</span>
+                <span class="badge badge-secondary">CSE-202</span>
                 <span style="font-size: 0.8rem; font-weight: 700; color: #F59E0B;"><i class="fa-solid fa-star"></i> 4.9</span>
               </div>
-              <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem;">Interaction Design & Prototyping</h3>
-              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">140 Enrolled • 10 Lectures • 3 Assignments</p>
+              <h3 style="font-size: 1.05rem; margin-bottom: 0.35rem;">Object-Oriented Programming with Java</h3>
+              <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">185 Enrolled • 10 Lectures • 3 Assignments</p>
               <div style="display: flex; gap: 0.5rem;">
-                <a href="course-detail.html?id=des-301" class="btn btn-primary btn-sm" style="flex:1;">Classroom</a>
+                <a href="course-detail.html?id=cse-202" class="btn btn-primary btn-sm" style="flex:1;">Classroom</a>
                 <button class="btn btn-outline btn-sm" onclick="showToast('Class scheduled for Thursday', 'info')"><i class="fa-solid fa-calendar"></i> Schedule</button>
               </div>
             </div>
@@ -224,13 +224,13 @@
           <div class="form-group">
             <label class="form-label">Course</label>
             <select id="newAsgCourse" class="form-control" required>
-              <option value="des-201">DES-201: UI/UX Design Systems</option>
-              <option value="des-301">DES-301: Interaction Design</option>
+              <option value="cse-201">CSE-201: Data Structures & Algorithms</option>
+              <option value="cse-202">CSE-202: Object-Oriented Programming with Java</option>
             </select>
           </div>
           <div class="form-group">
             <label class="form-label">Assignment Title</label>
-            <input type="text" id="newAsgTitle" class="form-control" placeholder="e.g. Assignment 4: Usability Testing Audit" required>
+            <input type="text" id="newAsgTitle" class="form-control" placeholder="e.g. Assignment 4: Binary Heap Optimization" required>
           </div>
           <div class="form-group">
             <label class="form-label">Description & Submission Guidelines</label>
@@ -267,8 +267,8 @@
           <div class="form-group">
             <label class="form-label">Target Course</label>
             <select class="form-control" required>
-              <option value="des-201">DES-201: UI/UX Design Systems</option>
-              <option value="des-301">DES-301: Interaction Design</option>
+              <option value="cse-201">CSE-201: Data Structures & Algorithms</option>
+              <option value="cse-202">CSE-202: Object-Oriented Programming with Java</option>
             </select>
           </div>
           <div class="form-group">
@@ -298,12 +298,13 @@
     let activeGradingSubId = null;
 
     document.addEventListener("DOMContentLoaded", () => {
+      checkProtectedPage();
       renderSubmissions();
       // Populate faculty-specific info from current user
       const u = getCurrentUser();
       if (u && u.role === "faculty") {
         const deptBadge = document.getElementById("facultyDeptBadge");
-        if (deptBadge) deptBadge.textContent = u.department || "Faculty Department";
+        if (deptBadge) deptBadge.textContent = u.department || "Department of Computer Science & Engineering";
       }
     });
 
@@ -389,7 +390,7 @@
         id: "asg-" + Date.now(),
         courseId: courseId,
         courseCode: courseId.toUpperCase(),
-        courseTitle: courseId === "des-201" ? "UI/UX Design Systems" : "Interaction Design",
+        courseTitle: courseId === "cse-201" ? "Data Structures & Algorithms" : "Object-Oriented Programming with Java",
         title: title,
         description: desc,
         dueDate: due + "T23:59:00",

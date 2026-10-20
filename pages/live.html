@@ -211,6 +211,7 @@
     let isCamOn = true;
 
     document.addEventListener("DOMContentLoaded", () => {
+      checkProtectedPage();
       renderLectures();
 
       // If URL has join parameter, open stage automatically

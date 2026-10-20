@@ -190,7 +190,7 @@
                 <div class="user-avatar" id="activeChatAvatar" style="width: 42px; height: 42px;">PK</div>
                 <div>
                   <div style="font-weight: 700; font-size: 0.95rem;" id="activeChatName">Dr. Priya Kulkarni</div>
-                  <div style="font-size: 0.78rem; color: var(--text-muted);" id="activeChatRole">Professor & HOD, HCI • Online</div>
+                  <div style="font-size: 0.78rem; color: var(--text-muted);" id="activeChatRole">Professor, Dept. of CSE • Online</div>
                 </div>
               </div>
 
@@ -263,6 +263,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      checkProtectedPage();
       renderThreads();
       loadActiveChat(activeThreadIndex);
     });
